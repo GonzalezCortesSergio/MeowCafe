@@ -12,7 +12,7 @@ import com.salesianostriana.dam.meowcafe.model.Gato;
 public class ControladorGatitos {
 
 	
-	@GetMapping("/gatitos")
+	@GetMapping("/gatitos.html")
 	public String imprimirGatitos(Model model) {
 		
 		model.addAttribute("gatito", new Gato("Minimiau", 1, LocalDateTime.now(), false, true, "https://images.hola.com/imagenes/mascotas/20180925130054/consejos-para-cuidar-a-un-gatito-recien-nacido-cs/0-601-526/cuidardgatito-t.jpg"));
