@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>MeowCafé | Página de inicio</title>
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <style type="text/css">
@@ -38,7 +38,7 @@
         <div class="container-fluid">
             <div class="collapse navbar-collapse d-flex justify-content-between" style="list-style-type: none;" id="mynavbar">
                     <li class="nav-item">
-                        <button class="btn btn-outline-primary border-0" type="button" data-bs-toggle="" data-bs-target="" style="background-color: #c57d56;">RESERVA</button>
+                        <button class="btn btn-outline-dark border-0" type="button" data-bs-toggle="" data-bs-target="" style="background-color: #c57d56;">RESERVA</button>
                     </li>
 
                     <li class="nav-item">
@@ -85,14 +85,27 @@
     </nav>
 
         
-	<div class="card col-12 col-xl mx-auto my-3 mx-xl-1" style="width:400px">
-	          <img class="card-img-top mx-auto my-3" th:src="${gatito.imagen}" alt="Card image" style="width:80%">
-	          <div class="card-body">
-	            <h4 class="card-title" th:text="${gatito.nombre}">Gatichi</h4>
-	            <p class="card-text" th:text="'Fecha disponible: ' + ${gatito.horasDisponible}">No sé</p>
-	   
-	          </div>
-	 </div>
+	<main class="m-3 row p-5" th:each="gatito : ${listaGatos}">
+		
+		<div class="card col my-3">
+			<img class="card-img-top mx-auto my-3" th:src="${gatito.imagen}" alt="Card image" style="width: 45%;">
+			<div class="card-body">
+				<h4 class="card-title" th:text="${gatito.nombre}">Nombre</h4>
+				<p class="card-text" th:text="'Fecha: ' + ${#temporals.format(gatito.horasDisponible, 'HH:mm')}">Fecha</p>
+				<div th:switch="${gatito.ocupado}">
+					
+					<p th:case="true" class="card-text">Ocupado</p>
+					<p th:case="false" class="card-text">Disponible</p>
+					
+				</div>
+				<div th:switch="${gatito.vacunado}">
+					
+					<p th:case="true" class="card-text">Vacunado</p>
+					<p th:case="false" class="card-text">No vacunado</p>
+				</p>
+			</div>
+		</div>
+	</main>
 
 
 
