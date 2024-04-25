@@ -85,9 +85,9 @@
     </nav>
 
         
-	<main class="m-3 row p-5" th:each="gatito : ${listaGatos}">
+	<main class="m-3 row p-5">
 		
-		<div class="card col my-3">
+		<div class="card col-5 my-3" th:each="gatito : ${listaGatos}">
 			<img class="card-img-top mx-auto my-3" th:src="${gatito.imagen}" alt="Card image" style="width: 45%;">
 			<div class="card-body">
 				<h4 class="card-title" th:text="${gatito.nombre}">Nombre</h4>
@@ -102,7 +102,8 @@
 					
 					<p th:case="true" class="card-text">Vacunado</p>
 					<p th:case="false" class="card-text">No vacunado</p>
-				</p>
+					</p>
+				</div>
 			</div>
 		</div>
 	</main>
