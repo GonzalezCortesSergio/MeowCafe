@@ -87,22 +87,16 @@
         
 	<main class="m-3 row p-5">
 		
-		<div class="card col-12 col-xl mx-auto my-3 mx-xl-1" th:each="gatito : ${listaGatos}" style="width: 400px;">
-			<img class="card-img-top mx-auto my-3" th:src="${gatito.imagen}" alt="Card image" style="width: 45%;">
+		<div class="card col-12 col-xl mx-auto my-3 mx-xl-1" th:each="gatito : ${gatitos}">
+			<img class="card-img-top mx-auto my-3" th:src="${'https://placehold.co/1000x800/png'}" alt="Card image">
 			<div class="card-body">
 				<h4 class="card-title" th:text="${gatito.nombre}">Nombre</h4>
-				<p class="card-text" th:text="'Fecha: ' + ${#temporals.format(gatito.horasDisponible, 'HH:mm')}">Fecha</p>
+				<p class="card-text" th:text="'Fecha: ' + ${#temporals.format(gatito.horasDisponibles, 'HH:mm')}">Fecha</p>
 				<div th:switch="${gatito.ocupado}">
 					
 					<p th:case="true" class="card-text">Ocupado</p>
 					<p th:case="false" class="card-text">Disponible</p>
 					
-				</div>
-				<div th:switch="${gatito.vacunado}">
-					
-					<p th:case="true" class="card-text">Vacunado</p>
-					<p th:case="false" class="card-text">No vacunado</p>
-					</p>
 				</div>
 			</div>
 		</div>
