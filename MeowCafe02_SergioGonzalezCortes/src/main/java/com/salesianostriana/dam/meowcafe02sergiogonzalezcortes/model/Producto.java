@@ -5,30 +5,29 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Usuario {
+@Builder
+public class Producto {
 
 	@Id
 	@GeneratedValue
 	private Long id;
-	
 	private String nombre;
-	private String apellidos;
-	private String email;
-	private String nombreUsuario;
-	private String contrasena;	
+	private float precio;
+	
+	@Enumerated(EnumType.STRING)
+	private TipoProducto tipoProducto;
+	
+	@ManyToOne
+	private Combo combo;
 
-	@Enumerated(value = EnumType.STRING)
-	private TipoUsuario tipo;
-	private boolean esPremium;
-	
-	
 }
