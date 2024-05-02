@@ -27,4 +27,5 @@ public class Gato {
 	private String nombre;
 	private LocalTime horasDisponibles;
 	private boolean ocupado;
+	private String imagen;
 }
