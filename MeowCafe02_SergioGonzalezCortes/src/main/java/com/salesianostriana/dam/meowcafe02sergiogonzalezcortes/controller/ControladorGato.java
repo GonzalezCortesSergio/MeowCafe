@@ -35,13 +35,12 @@ public class ControladorGato {
 		return "formularioGatitos";
 	}
 	
-	@PostMapping("/agregarGato")
-	public String agregarGatinio (@ModelAttribute("gatoNuevo") Gato gato ,Model model) {
+	@PostMapping("/formularioGatos/agregar")
+	public String agregarGatinio (@ModelAttribute("gatoNuevo") Gato gato) {
 		
 		servicioGato.save(gato);
 		
-		model.addAttribute("gatitos", servicioGato.findAll());
 		
-		return "gatitos";
+		return "redirect:/gatos";
 	}
 }
