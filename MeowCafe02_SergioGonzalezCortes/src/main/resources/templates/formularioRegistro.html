@@ -83,26 +83,6 @@
 
                         <ul class="dropdown-menu">
 
-                            <li>
-                                <form class="w-50 mx-auto" action="/action_page.php">
-                                    <div class="mb-3 mt-3 input-group">
-                                    <label for="email" class="input-group-text">Email:</label>
-                                    <input type="email" class="form-control" id="email" placeholder="suemail@gmail.com" name="email">
-                                    </div>
-                                    <div class="mb-3 input-group">
-                                    <label for="pwd" class="input-group-text">Contraseña:</label>
-                                    <input type="password" class="form-control" id="pwd" placeholder="Su contraseña aquí" name="pswd">
-                                    </div>
-                                    <div class="form-check mb-3">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" name="remember"> Recuérdame
-                                    </label>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-                                    <br />
-                                    <a href="./formularioRegistro.html">¿No tienes una cuenta creada? Regístrate aquí</a>
-                                </form>
-                            </li>
                         </ul>
                     </li>
             </div>
@@ -113,18 +93,18 @@
     
     <div class="w-50 h-100 mx-auto">
 
-        <form class="w-100" action="/action_page.php">
+        <form class="w-100" th:action="@{/formularioRegistro/registro}" method="post" th:object="${usuario}" name="formularioRegistro" id="formularioRegistro">
 
             <div class="d-flex" id="primerGrupo">
 
             <div class="m-3 input-group">
                 <label for="text" class="input-group-text">Nombre:</label>
-                <input type="text" class="form-control" id="nombre" placeholder="Su nombre aquí" name="nombre">
+                <input type="text" class="form-control" id="nombre" placeholder="Su nombre aquí" name="nombre" th:field="*{nombre}">
             </div>
 
             <div class="m-3 input-group">
                 <label for="text" class="input-group-text">Apellidos:</label>
-                <input type="text" class="form-control" id="apellidos" placeholder="Sus apellidos aquí" name="apellidos">
+                <input type="text" class="form-control" id="apellidos" placeholder="Sus apellidos aquí" name="apellidos" th:field="*{apellidos}">
             </div>
 
             </div>
@@ -132,11 +112,11 @@
             <div class="d-flex" id="segundoGrupo">
             <div class="m-3 input-group">
                 <label for="text" class="input-group-text">Nombre de usuario:</label>
-                <input type="text" class="form-control" id="nombreUsuario" placeholder="Su nombre de usuario aquí" name="nombreUsuario">
+                <input type="text" class="form-control" id="nombreUsuario" placeholder="Su nombre de usuario aquí" name="nombreUsuario" th:field="*{nombreUsuario}">
             </div>
             <div class="m-3 input-group">
             <label for="email" class="input-group-text">Email:</label>
-            <input type="email" class="form-control" id="email" placeholder="suemail@gmail.com" name="email">
+            <input type="email" class="form-control" id="email" placeholder="suemail@gmail.com" name="email" th:field="*{email}">
             </div>
             </div>
 
@@ -144,11 +124,11 @@
 
             <div class="m-3 input-group">
             <label for="pwd" class="input-group-text">Contraseña:</label>
-            <input type="password" class="form-control" id="pwd" placeholder="Su contraseña aquí" name="pswd">
+            <input type="password" class="form-control" id="contrasena" placeholder="Su contraseña aquí" name="contrasena" th:field="*{contrasena}">
             </div>
             <div class="m-3 input-group">
                 <label for="pwd" class="input-group-text">Repetir contraseña:</label>
-                <input type="password" class="form-control" id="pwd" placeholder="Repita su contraseña aquí" name="pswd">
+                <input type="password" class="form-control" id="repetirContrasena" placeholder="Repita su contraseña aquí" name="repetirContrasena">
             </div>
 
             </div>

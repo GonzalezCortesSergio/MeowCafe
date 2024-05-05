@@ -13,3 +13,5 @@ insert into gato (id, nombre, horas_disponibles, ocupado, imagen) values (10, 'C
 
 insert into usuario (id, nombre, apellidos, email, nombre_usuario, contrasena, tipo, es_premium) values (1, 'admin', 'admin', 'admin@gmail.com', 'admin', '1234', 'ADMIN', true); 
 insert into usuario (id, nombre, apellidos, email, nombre_usuario, contrasena, tipo, es_premium) values (2, 'Sergio', 'González Cortés', 'gonzalez.coser24@triana.salesianos.edu', 'Sergio González', '1234', 'CLIENTE', true);
+
+alter sequence usuario_seq start with 3 increment by 50;

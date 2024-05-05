@@ -90,6 +90,7 @@
 		<table class="table table-stripped w-50 m-auto">
 			<thead class="table-info">
 				<tr>
+                    <th>ID</th>
 					<th>Nombre</th>
 					<th>Apellidos</th>
 					<th>Email</th>
@@ -101,7 +102,8 @@
 			<tbody class="table-success">
 				
 				<tr th:each="cliente : ${clientes}">
-					
+
+                    <td th:text="${cliente.id}">ID del cliente</td>
 					<td th:text="${cliente.nombre}">Nombre del cliente</td>
 					<td th:text="${cliente.apellidos}">Apellidos del cliente</td>
 					<td th:text="${cliente.email}">Email del cliente</td>

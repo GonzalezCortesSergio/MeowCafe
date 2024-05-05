@@ -1,11 +1,8 @@
 package com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,10 +11,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+@SequenceGenerator(name = "secuenciaUsuario", sequenceName = "usuario_seq", initialValue = 3)
 public class Usuario {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "secuenciaUsuario")
 	private Long id;
 	
 	private String nombre;
