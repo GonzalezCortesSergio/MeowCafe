@@ -58,9 +58,14 @@ public class ControladorGato {
 		return "redirect:/gatos";
 	}
 
-
 	@GetMapping("/borrarGato/{id}")
-	public String borrarGato(@PathVariable("id") long id) {
+	@ResponseBody
+	public void borrarGato(@PathVariable("id") long id) {
+
+	}
+
+	@GetMapping("/borrarGato/confirmarBorrado/{id}")
+	public String confirmarBorrado(@PathVariable("id") long id) {
 
 		servicioGato.deleteById(id);
 

@@ -102,7 +102,7 @@
 				<div>
 					
 					<a href="#" th:href="@{formularioGatos/{id}(id=${gatito.id})}"><input type="button" value="Editar" class="btn btn-info" /></a>
-					<a href="#" th:href="@{borrarGato/{id}(id=${gatito.id})}"><input type="button" value="Borrar" class="btn btn-info" /></a>
+					<a th:href="@{borrarGato/{id}(id=${gatito.id})}"><input type="button" value="Borrar" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalBorrarGato"/></a>
 				</div>
 			</div>
 		</div>
@@ -114,7 +114,32 @@
 	</main>
 
 
+    <div class="modal" id="modalBorrarGato">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
+                <div class="modal-header">
+
+                    <h4 class="modal-title">¿Seguro que desea borrarlo?</h4>
+                </div>
+
+                <div class="modal-body">
+
+                    <p>En el caso de que se elimine no se podrán revertir los cambios</p>
+
+                </div>
+
+                <div class="modal-footer">
+                    <div class=" d-flex justify-content-between">
+                        <a href="#" th:href="@{borrarGato/confirmarBorrado/{id}}"><input type="button" class="btn btn-info" value="Borrar" data-bs-dismiss="modal"/></a>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
 </body>
+
+
 </html>
