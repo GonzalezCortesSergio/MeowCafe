@@ -57,4 +57,13 @@ public class ControladorGato {
 		
 		return "redirect:/gatos";
 	}
+
+
+	@GetMapping("/borrarGato/{id}")
+	public String borrarGato(@PathVariable("id") long id) {
+
+		servicioGato.deleteById(id);
+
+		return "redirect:/gatos";
+	}
 }
