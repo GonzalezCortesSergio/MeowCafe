@@ -1,15 +1,10 @@
 package com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -27,7 +22,10 @@ public class Producto {
 	@Enumerated(EnumType.STRING)
 	private TipoProducto tipoProducto;
 	
-	@ManyToOne
-	private Combo combo;
+	@ManyToMany(mappedBy = "productos", fetch = FetchType.EAGER)
+	@Builder.Default
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
+	private List<Combo> combos = new ArrayList<Combo>();
 
 }
