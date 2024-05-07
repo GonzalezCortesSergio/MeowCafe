@@ -4878,3 +4878,11 @@ insert into usuario (NEXTVAL('usuario_seq'), nombre, apellidos, email, nombre_us
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
 	at com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.MeowCafe02SergioGonzalezCortesApplication.main(MeowCafe02SergioGonzalezCortesApplication.java:10)
+2024-05-07 13:34:55.668183+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "IMAGEN CHARACTER VARYING(255)": "'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUSEhIVFRUVFRUV... (9731)"
+Value too long for column "IMAGEN CHARACTER VARYING(255)": "'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUSEhIVFRUVFRUV... (9731)"; SQL statement:
+update gato set horas_disponibles=?,imagen=?,nombre=?,ocupado=? where id=? [22001-224]
+2024-05-07 13:35:06.777543+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "IMAGEN CHARACTER VARYING(255)": "'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUSEhIVFRUVFRUV... (9731)"
+Value too long for column "IMAGEN CHARACTER VARYING(255)": "'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUSEhIVFRUVFRUV... (9731)"; SQL statement:
+update gato set horas_disponibles=?,imagen=?,nombre=?,ocupado=? where id=? [22001-224]
