@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@SequenceGenerator(name = "secuenciaUsuario", sequenceName = "usuario_seq", initialValue = 3)
+@SequenceGenerator(name = "secuenciaUsuario", sequenceName = "usuario_seq")
 public class Usuario {
 
 	@Id
