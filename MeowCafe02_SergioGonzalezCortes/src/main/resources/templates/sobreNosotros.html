@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,13 +47,13 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="./index.html">Inicio</a>
+                        <a class="nav-link" href="./index.html" th:href="@{/index}">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/gatos">Gatitos</a>
+                        <a class="nav-link" href="./gatitos.html" th:href="@{/gatos}">Gatitos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/clientes">Clientes</a>
+                        <a class="nav-link" href="./clientes.html" th:href="@{/clientes}">Clientes</a>
                     </li>
 
                     <li class="nav-item ms-5 ps-5">
