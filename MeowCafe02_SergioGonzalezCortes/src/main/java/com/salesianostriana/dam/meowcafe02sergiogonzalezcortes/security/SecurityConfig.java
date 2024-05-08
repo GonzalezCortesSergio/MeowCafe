@@ -59,10 +59,11 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(
                 auth -> auth.requestMatchers("/css/**", "/js/**").permitAll()
+                        .requestMatchers("/index","/login", "/error").permitAll()
                         .anyRequest().authenticated()
         ).formLogin(
-                loginz -> loginz
-                        .loginPage("/index").permitAll()
+                loginz -> loginz.
+                        loginPage("/index").permitAll()
         );
 
 

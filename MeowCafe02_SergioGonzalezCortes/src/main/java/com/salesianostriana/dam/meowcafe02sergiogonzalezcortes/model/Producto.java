@@ -22,7 +22,7 @@ public class Producto {
 	@GeneratedValue
 	private Long id;
 	private String nombre;
-	private float precio;
+	private double precio;
 	
 	@Enumerated(EnumType.STRING)
 	private TipoProducto tipoProducto;

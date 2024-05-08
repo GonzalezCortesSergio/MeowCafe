@@ -1,6 +1,7 @@
 package com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model;
 
 import java.time.LocalTime;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,9 +23,12 @@ public class Gato {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
+
 	private String nombre;
 	private LocalTime horasDisponibles;
 	private boolean ocupado;
 	private String imagen;
+
+	//private List<Vacuna> listaVacunas;
+
 }

@@ -16,18 +16,6 @@ public class ControladorUsuario {
 
 	@Autowired
 	private ServicioUsuario servicioUsuario;
-	
-	
-	@GetMapping("/clientes")
-	public String mostrarClientesRegistrados(Model model) {
-		
-		model.addAttribute("clientes", servicioUsuario.findAll().stream()
-				.filter(usuario -> usuario.getTipo().toString().equals("CLIENTE"))
-				.toList());
-		
-		
-		return "clientes";
-	}
 
 
 	@GetMapping("/formularioRegistro")
@@ -45,7 +33,7 @@ public class ControladorUsuario {
 
 		usuario.setTipo(TipoUsuario.CLIENTE);
 		servicioUsuario.save(usuario);
-		return "redirect:/index.html";
+		return "redirect:/";
 	}
 
 }

@@ -107,7 +107,7 @@
     
     <div class="w-50 h-100 mx-auto">
 
-        <form class="w-100" method="post" th:action="${gato.id != 0} ? @{/formularioGatos/editar} : @{/formularioGatos/agregar}" th:object="${gato}" name="formularioGato" id="formularioGato">
+        <form class="w-100" method="post" th:action="${gato.id != 0} ? @{/admin/formularioGatos/editar} : @{/admin/formularioGatos/agregar}" th:object="${gato}" name="formularioGato" id="formularioGato">
 
             <input th:if="${gato.id != 0}" type="hidden" name="id" th:field="*{id}" />
             <div class="m-3 input-group">

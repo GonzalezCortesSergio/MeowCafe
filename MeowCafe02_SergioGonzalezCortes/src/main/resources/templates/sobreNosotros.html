@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MeowCafé | Sobre nosotros</title>
-    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.css" th:href="@{/css/bootstrap.css}">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <style type="text/css">
@@ -64,14 +64,14 @@
                         <ul class="dropdown-menu">
 
                             <li>
-                                <form class="w-50 mx-auto" action="/action_page.php">
+                                <form class="w-50 mx-auto" th:action="@{/login}" name="formularioLogin" id="formularioLogin" method="post">
                                     <div class="mb-3 mt-3">
-                                    <label for="email" class="form-label">Email:</label>
-                                    <input type="email" class="form-control" id="email" placeholder="suemail@gmail.com" name="email">
+                                    <label for="username" class="form-label">Email:</label>
+                                    <input type="text" class="form-control" id="username" placeholder="Nombre de usuario" name="username">
                                     </div>
                                     <div class="mb-3">
-                                    <label for="pwd" class="form-label">Contraseña:</label>
-                                    <input type="password" class="form-control" id="pwd" placeholder="Su contraseña aquí" name="pswd">
+                                    <label for="password" class="form-label">Contraseña:</label>
+                                    <input type="password" class="form-control" id="password" placeholder="Su contraseña aquí" name="password">
                                     </div>
                                     <div class="form-check mb-3">
                                     <label class="form-check-label">
