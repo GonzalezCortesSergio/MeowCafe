@@ -28,7 +28,7 @@ public class ControladorAdmin {
 
         model.addAttribute("gatitos", servicioGato.findAll());
 
-        return "gatitosAdmin";
+        return "/admin/gatitosAdmin";
     }
 
     @GetMapping("/formularioGatos")
@@ -38,7 +38,7 @@ public class ControladorAdmin {
 
         model.addAttribute("gato", gato);
 
-        return "formularioGatitos";
+        return "/admin/formularioGatitos";
     }
 
 
@@ -57,7 +57,7 @@ public class ControladorAdmin {
 
         model.addAttribute("gato", servicioGato.findById(id).get());
 
-        return "formularioGatitos";
+        return "/admin/formularioGatitos";
     }
 
     @PostMapping("/formularioGatos/editar")
@@ -79,7 +79,7 @@ public class ControladorAdmin {
 
         servicioGato.deleteById(id);
 
-        return "redirect:/gatos";
+        return "redirect:/admin/gatos";
     }
 
     //Métodos Clientes
@@ -92,7 +92,7 @@ public class ControladorAdmin {
                 .toList());
 
 
-        return "clientes";
+        return "/admin/clientes";
     }
 
 

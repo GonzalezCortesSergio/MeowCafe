@@ -48,7 +48,7 @@
                         <a class="nav-link" href="./sobreNosotros.html" th:href="@{/sobreNosotros}">Sobre nosotros</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./clientes.html" th:href="@{/clientes}">Clientes</a>
+                        <a class="nav-link" href="admin/clientes.html" th:href="@{/clientes}">Clientes</a>
                     </li>
 
                     <li class="nav-item ms-5 ps-5">
@@ -59,7 +59,7 @@
                         <ul class="dropdown-menu">
 
                             <li>
-                                <form class="w-50 mx-auto" th:action="@{/login}" name="formularioLogin" id="formularioLogin" method="post">
+                                <form class="w-50 mx-auto" th:action="@{/index}" name="formularioLogin" id="formularioLogin" method="POST">
                                     <div class="mb-3 mt-3">
                                     <label for="username" class="form-label">Nombre de usuario:</label>
                                     <input type="text" class="form-control" id="username" placeholder="Nombre de usuario" name="username">
@@ -88,7 +88,7 @@
 	<main class="mx-auto row p-5 justify-content-between">
 		
 		<div class="card col-12 col-xl-3 my-3 mx-xl-3" th:each="gatito : ${gatitos}">
-			<img class="card-img-top mx-auto my-3" th:src="${gatito.imagen}" alt="Card image" style="width: 80%; height: 200px;">
+			<img class="card-img-top mx-auto my-3" th:src="@{${gatito.imagen}}" alt="Card image" style="width: 80%; height: 200px;">
 			<div class="card-body">
 				<h4 class="card-title" th:text="${gatito.nombre}">Nombre</h4>
 				<p class="card-text" th:text="'Hora disponible: ' + ${#temporals.format(gatito.horasDisponibles, 'HH:mm')}">Hora disponible</p>

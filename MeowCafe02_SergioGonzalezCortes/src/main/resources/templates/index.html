@@ -48,7 +48,7 @@
                         <a class="nav-link" href="./gatitos.html" th:href="@{/gatos}">Gatitos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./clientes.html" th:href="@{/admin/clientes}">Clientes</a>
+                        <a class="nav-link" href="admin/clientes.html" th:href="@{/admin/clientes}">Clientes</a>
                     </li>
 
                     <li class="nav-item ms-5 ps-5">
@@ -59,10 +59,10 @@
                         <ul class="dropdown-menu">
 
                             <li>
-                                <form method="POST" class="w-50 mx-auto" action="#" th:action="@{/login}" name="formularioLogin" id="formularioLogin">
+                                <form method="POST" class="w-50 mx-auto" action="#" th:action="@{/index}" name="formularioLogin" id="formularioLogin">
                                     <div class="mb-3 mt-3">
                                     <label for="username" class="form-label">Nombre de usuario:</label>
-                                    <input type="text" class="form-control" id="username" placeholder="suemail@gmail.com" name="username" required>
+                                    <input type="text" class="form-control" id="username" placeholder="Nombre de usuario" name="username" required>
                                     </div>
                                     <div class="mb-3">
                                     <label for="password" class="form-label">Contraseña:</label>
