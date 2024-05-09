@@ -8,6 +8,7 @@ public class MeowCafe02SergioGonzalezCortesApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MeowCafe02SergioGonzalezCortesApplication.class, args);
+
 	}
 
 }

@@ -39,7 +39,7 @@ public class Usuario implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 
 		String role = "ROLE_";
-		role += tipo.getTipo();
+		role += tipo.toString();
 
 		return List.of(new SimpleGrantedAuthority(role));
 	}

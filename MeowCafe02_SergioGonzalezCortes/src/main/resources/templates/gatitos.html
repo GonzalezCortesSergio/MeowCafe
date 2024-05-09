@@ -52,33 +52,13 @@
                     </li>
 
                     <li class="nav-item ms-5 ps-5">
-                        <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">
-                            Usuario
-                        </button>
 
-                        <ul class="dropdown-menu">
+                        <a href="./login.html" th:href="@{/login}">
+                            <button type="button" class="btn btn-dark">
+                                Usuario
+                            </button>
+                        </a>
 
-                            <li>
-                                <form class="w-50 mx-auto" th:action="@{/index}" name="formularioLogin" id="formularioLogin" method="POST">
-                                    <div class="mb-3 mt-3">
-                                    <label for="username" class="form-label">Nombre de usuario:</label>
-                                    <input type="text" class="form-control" id="username" placeholder="Nombre de usuario" name="username">
-                                    </div>
-                                    <div class="mb-3">
-                                    <label for="password" class="form-label">Contraseña:</label>
-                                    <input type="password" class="form-control" id="password" placeholder="Su contraseña aquí" name="password">
-                                    </div>
-                                    <div class="form-check mb-3">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" name="remember"> Recuérdame
-                                    </label>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-                                    <br />
-                                    <a th:href="@{/formularioRegistro}">¿No tienes una cuenta creada? Regístrate aquí</a>
-                                </form>
-                            </li>
-                        </ul>
                     </li>
             </div>
         </div>

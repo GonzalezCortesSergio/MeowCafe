@@ -32,6 +32,7 @@ public class SecurityConfig {
 
     private final AuthenticationSuccessHandler authenticationSuccessHandler;
 
+
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider () {
 
@@ -64,11 +65,11 @@ public class SecurityConfig {
                 auth -> auth.requestMatchers("/css/**", "/js/**", "/h2-console/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/index","/login", "/sobreNosotros", "/gatos", "/error").permitAll()
-                        .anyRequest().authenticated()
-        ).requestCache(cache -> cache.requestCache(requestCache))
+                        .anyRequest().authenticated())
+                .requestCache(cache -> cache.requestCache(requestCache))
                 .formLogin(
                 loginz -> loginz.
-                        loginPage("/index")
+                        loginPage("/login")
                         .successHandler(authenticationSuccessHandler)
                         .permitAll()
         ).logout(

@@ -23,7 +23,7 @@ public class RoleBasedSuccessHandler implements AuthenticationSuccessHandler {
 
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
-    private final String ROLE_USER_URL = "/web/index";
+    private final String ROLE_CLIENTE_URL = "/web/index";
     private final String ROLE_ADMIN_URL = "/admin/index";
     private final String ROLE_DEFAULT_URL = "/login?error=Error en el rol asignado";
     @Override
@@ -54,7 +54,8 @@ public class RoleBasedSuccessHandler implements AuthenticationSuccessHandler {
                 .stream()
                 .map(GrantedAuthority::getAuthority)
                 .sorted((role1, role2) ->
-                        role_weight.getOrDefault(role2, Integer.MIN_VALUE))
+                        role_weight.getOrDefault(role2, Integer.MIN_VALUE)
+                            - role_weight.getOrDefault(role1, Integer.MIN_VALUE))
                 .findFirst()
                 .get();
     }
@@ -64,7 +65,7 @@ public class RoleBasedSuccessHandler implements AuthenticationSuccessHandler {
         return switch(role) {
 
             case "ROLE_ADMIN" -> ROLE_ADMIN_URL;
-            case "ROLE_USER" -> ROLE_USER_URL;
+            case "ROLE_CLIENTE" -> ROLE_CLIENTE_URL;
             default ->  ROLE_DEFAULT_URL;
         };
     }
