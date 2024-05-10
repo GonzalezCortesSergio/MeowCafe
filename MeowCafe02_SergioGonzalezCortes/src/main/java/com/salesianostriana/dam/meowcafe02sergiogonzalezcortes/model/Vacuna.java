@@ -1,8 +1,6 @@
 package com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,4 +20,22 @@ public class Vacuna {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaVacuna;
+
+
+    @ManyToOne
+    private Gato gato;
+
+
+
+    public void addToGato(Gato gato) {
+
+        this.gato = gato;
+        gato.getVacunas().add(this);
+    }
+
+    public void removeFromGato(Gato gato) {
+
+        gato.getVacunas().remove(this);
+        this.gato = null;
+    }
 }
