@@ -1,6 +1,7 @@
 package com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model;
 
 import java.time.LocalTime;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,15 +18,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@SequenceGenerator(name = "secuenciaGato", sequenceName="gato_seq", initialValue=11)
 public class Gato {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="secuenciaGato")
+	@GeneratedValue
 	private Long id;
-	
+
 	private String nombre;
 	private LocalTime horasDisponibles;
 	private boolean ocupado;
 	private String imagen;
+
+	//private List<Vacuna> listaVacunas;
+
 }

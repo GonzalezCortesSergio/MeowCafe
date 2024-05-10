@@ -13,6 +13,3 @@ insert into gato (id, nombre, horas_disponibles, ocupado, imagen) values (NEXTVA
 
 insert into usuario (id, nombre, apellidos, email, username, password, tipo, es_premium) values (NEXTVAL('usuario_seq'), 'admin', 'admin', 'admin@gmail.com', 'admin', 'admin', 'ADMIN', true);
 insert into usuario (id, nombre, apellidos, email, username, password, tipo, es_premium) values (NEXTVAL('usuario_seq'), 'Sergio', 'González Cortés', 'gonzalez.coser24@triana.salesianos.edu', 'Sergio González', '1234', 'CLIENTE', true);
-
-
-insert into producto(id, nombre, precio, tipo_producto, imagen) values (NEXTVAL('producto_seq'), 'Tarta de queso', 3.45, 'COMIDA', 'https://media.istockphoto.com/id/1364933651/es/foto/tarta-de-queso-cl%C3%A1sica.jpg?s=612x612&w=0&k=20&c=Hgvq9_3Wy0v2_zanfC6AL2iWDZIVKgJ-NxfyAROCZBY=');
