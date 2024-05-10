@@ -26,7 +26,7 @@ public class Combo {
 	
 	private boolean esOferta;
 	
-	private float precioCombo;
+	private double precioCombo;
 	
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude

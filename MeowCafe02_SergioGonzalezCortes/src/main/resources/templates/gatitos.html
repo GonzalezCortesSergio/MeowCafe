@@ -33,7 +33,7 @@
 <body>
     <h1 class="display-5 text-center text-light py-5 w-100 m-auto">Gatos</h1>
 
-    <nav class="navbar-expand py-3 mb-5">
+    <nav class="navbar-expand py-3 mb-5 sticky-top">
 
         <div class="container-fluid">
             <div class="collapse navbar-collapse d-flex justify-content-between" style="list-style-type: none;" id="mynavbar">
@@ -42,43 +42,23 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="./index.html">Inicio</a>
+                        <a class="nav-link" href="./index.html" th:href="@{/index}">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./sobreNosotros.html">Sobre nosotros</a>
+                        <a class="nav-link" href="./sobreNosotros.html" th:href="@{/sobreNosotros}">Sobre nosotros</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/clientes">Clientes</a>
+                        <a class="nav-link" href="admin/clientes.html" th:href="@{/clientes}">Clientes</a>
                     </li>
 
                     <li class="nav-item ms-5 ps-5">
-                        <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">
-                            Usuario
-                        </button>
 
-                        <ul class="dropdown-menu">
+                        <a href="./login.html" th:href="@{/login}">
+                            <button type="button" class="btn btn-dark">
+                                Usuario
+                            </button>
+                        </a>
 
-                            <li>
-                                <form class="w-50 mx-auto" action="/action_page.php">
-                                    <div class="mb-3 mt-3">
-                                    <label for="email" class="form-label">Email:</label>
-                                    <input type="email" class="form-control" id="email" placeholder="suemail@gmail.com" name="email">
-                                    </div>
-                                    <div class="mb-3">
-                                    <label for="pwd" class="form-label">Contraseña:</label>
-                                    <input type="password" class="form-control" id="pwd" placeholder="Su contraseña aquí" name="pswd">
-                                    </div>
-                                    <div class="form-check mb-3">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" name="remember"> Recuérdame
-                                    </label>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-                                    <br />
-                                    <a href="./html/formularioRegistro.html">¿No tienes una cuenta creada? Regístrate aquí</a>
-                                </form>
-                            </li>
-                        </ul>
                     </li>
             </div>
         </div>
@@ -88,33 +68,23 @@
 	<main class="mx-auto row p-5 justify-content-between">
 		
 		<div class="card col-12 col-xl-3 my-3 mx-xl-3" th:each="gatito : ${gatitos}">
-			<img class="card-img-top mx-auto my-3" th:src="${gatito.imagen}" alt="Card image" style="width: 80%; height: 200px;">
+			<img class="card-img-top mx-auto my-3" th:src="@{${gatito.imagen}}" alt="Card image" style="width: 80%; height: 200px;">
 			<div class="card-body">
 				<h4 class="card-title" th:text="${gatito.nombre}">Nombre</h4>
-				<p class="card-text" th:text="'Fecha: ' + ${#temporals.format(gatito.horasDisponibles, 'HH:mm')}">Fecha</p>
+				<p class="card-text" th:text="'Hora disponible: ' + ${#temporals.format(gatito.horasDisponibles, 'HH:mm')}">Hora disponible</p>
 				<div th:switch="${gatito.ocupado}">
 					
 					<p th:case="true" class="card-text">Ocupado</p>
 					<p th:case="false" class="card-text">Disponible</p>
 					
 				</div>
-				
-				<div>
-					
-					<a href="editar"><input type="button" value="Editar" class="btn btn-info" /></a>
-					<a href="borrar"><input type="button" value="Borrar" class="btn btn-info" /></a>
-				</div>
+
+
 			</div>
 		</div>
-		
-		<div class="text-center">
-			
-			<a href="formularioGatos"><input type="button" value="Agregar gatito" class="btn btn-info" /></a>
-		</div>
 	</main>
-
-
-
     
 </body>
+
+
 </html>
