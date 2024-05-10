@@ -1,6 +1,7 @@
 package com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.controller;
 
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.Gato;
+import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.Vacuna;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioGato;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class ControladorAdmin {
 
         model.addAttribute("gatitos", servicioGato.findAll());
 
-        return "/admin/gatitosAdmin";
+        return "/admin/gatitos";
     }
 
     @GetMapping("/formularioGatos")
@@ -38,7 +39,7 @@ public class ControladorAdmin {
 
         model.addAttribute("gato", gato);
 
-        return "/admin/formularioGatitos";
+        return "admin/formularioGatitos";
     }
 
 
@@ -55,14 +56,47 @@ public class ControladorAdmin {
     @GetMapping("/formularioGatos/{id}")
     public String formularioEditar(@PathVariable("id") long id, Model model) {
 
-        model.addAttribute("gato", servicioGato.findById(id).get());
+        if (servicioGato.findById(id).isPresent()) {
+            model.addAttribute("gato", servicioGato.findById(id).get());
 
-        return "/admin/formularioGatitos";
+            return "/admin/formularioGatitos";
+        }
+
+        else {
+
+            return "redirect:/admin/gatos";
+        }
+
     }
 
     @PostMapping("/formularioGatos/editar")
     public String editarGatinio(@ModelAttribute("gato") Gato gato) {
 
+        servicioGato.edit(gato);
+
+        return "redirect:/admin/gatos";
+    }
+
+    @GetMapping("/vacunas/{id}")
+    public String formularioVacunas(@PathVariable("id") long id, Model model) {
+
+        if (servicioGato.findById(id).isPresent()) {
+
+            model.addAttribute("gato", servicioGato.findById(id).get());
+            model.addAttribute("vacuna", new Vacuna());
+
+            return "admin/formularioVacuna";
+        }
+        else {
+
+            return "redirect:/admin/gatos";
+        }
+    }
+
+    @PostMapping("/vacunas/ponerVacuna")
+    public String ponerVacuna (@ModelAttribute("gato") Gato gato, @ModelAttribute("vacuna") Vacuna vacuna) {
+
+        vacuna.addToGato(gato);
         servicioGato.edit(gato);
 
         return "redirect:/admin/gatos";

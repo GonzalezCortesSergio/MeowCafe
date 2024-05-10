@@ -1,17 +1,11 @@
 package com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Data
@@ -29,6 +23,13 @@ public class Gato {
 	private boolean ocupado;
 	private String imagen;
 
-	//private List<Vacuna> listaVacunas;
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
+	@OneToMany(mappedBy = "gato",
+			fetch = FetchType.EAGER,
+			cascade = CascadeType.ALL,
+			orphanRemoval = true)
+	@Builder.Default
+	private List<Vacuna> vacunas = new ArrayList<>();
 
 }
