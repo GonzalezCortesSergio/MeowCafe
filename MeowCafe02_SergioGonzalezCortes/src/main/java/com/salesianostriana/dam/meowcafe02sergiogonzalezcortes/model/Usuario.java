@@ -18,7 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Usuario implements UserDetails {
+public class Usuario {
 
 	@Id
 	@GeneratedValue
@@ -34,33 +34,4 @@ public class Usuario implements UserDetails {
 	private TipoUsuario tipo;
 	private boolean esPremium;
 
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-
-		String role = "ROLE_";
-		role += tipo.toString();
-
-		return List.of(new SimpleGrantedAuthority(role));
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
 }

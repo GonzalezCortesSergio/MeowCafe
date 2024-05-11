@@ -3,12 +3,7 @@ package com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,38 +31,13 @@ public class Combo {
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	@Builder.Default
-	@OneToMany(
-			mappedBy="combo",
-			fetch = FetchType.EAGER,
-			cascade = CascadeType.ALL,
-			orphanRemoval = true
-			)
-	private List<Producto> productos = new ArrayList<Producto>();
-	
-	
-	
-	//HELPER
-	
-	public void agregarProducto(Producto producto) {
-		
-		producto.setCombo(this);
-		this.productos.add(producto);
-	}
-	
-	public void eliminarProducto (Producto producto) {
-		
-		this.productos.remove(producto);
-		producto.setCombo(null);
-	}
-	
-	
-	public void calcularPrecioCombo () {
-		precioCombo = 0;
-		for (Producto producto : productos) {
-			
-			setPrecioCombo(precioCombo + producto.getPrecio());
-			
-		}
-	}
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable (
+			name = "producto_combo",
+			joinColumns = @JoinColumn(name = "combo_id"),
+			inverseJoinColumns = @JoinColumn(name = "producto_id")
+	)
+	private List<Producto> producto = new ArrayList<Producto>();
+
 
 } 

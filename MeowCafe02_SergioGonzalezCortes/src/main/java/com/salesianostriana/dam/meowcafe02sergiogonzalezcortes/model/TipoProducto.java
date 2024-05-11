@@ -3,7 +3,7 @@ package com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model;
 public enum TipoProducto {
 
 	BEBIDA("BEBIDA"),
-	COMIDA("BEBIDA");
+	COMIDA("COMIDA");
 	
 	private String tipo;
 	

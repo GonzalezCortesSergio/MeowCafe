@@ -16,7 +16,7 @@ public class ServicioCombo extends ServicioBaseImpl<Combo, Long, RepositorioComb
 
         for (Combo combo : this.findAll()) {
 
-            combo.setPrecioCombo(combo.getProductos()
+            combo.setPrecioCombo(combo.getProducto()
                     .stream()
                     .mapToDouble(Producto::getPrecio)
                     .sum());
