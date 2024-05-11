@@ -1,6 +1,7 @@
 package com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.controller;
 
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.Gato;
+import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.Usuario;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.Vacuna;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioGato;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioUsuario;
@@ -32,7 +33,7 @@ public class ControladorAdmin {
 
         model.addAttribute("gatitos", servicioGato.findAll());
 
-        return "/admin/gatitos";
+        return "admin/gatitos";
     }
 
     @GetMapping("/formularioGatos")
@@ -125,7 +126,7 @@ public class ControladorAdmin {
     public String mostrarClientesRegistrados(Model model) {
 
         model.addAttribute("clientes", servicioUsuario.findAll().stream()
-                .filter(usuario -> usuario.getTipo().toString().equals("CLIENTE"))
+                .filter(usuario -> usuario.getTipo().getValor().equals("CLIENTE"))
                 .toList());
 
 
