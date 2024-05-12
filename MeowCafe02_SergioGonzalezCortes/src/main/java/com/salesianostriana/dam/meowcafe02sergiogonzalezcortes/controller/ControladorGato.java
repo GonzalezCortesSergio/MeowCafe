@@ -22,4 +22,13 @@ public class ControladorGato {
 		
 		return "gatitos";
 	}
+
+
+	@GetMapping("/cliente/gatos")
+	public String mostrarGatitosAClientes(Model model) {
+
+		model.addAttribute("gatitos", servicioGato.findAll());
+
+		return "cliente/gatitos";
+	}
 }

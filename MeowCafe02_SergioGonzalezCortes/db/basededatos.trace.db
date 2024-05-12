@@ -5284,3 +5284,9 @@ insert into usuario (id, nombre, apellidos, email, username, password, tipo, es_
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+2024-05-12 14:33:37.263904+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "GATOS" no encontrada
+Table "GATOS" not found; SQL statement:
+SELECT *
+FROM GATOS 
+LEFT JOIN VACUNA [42102-224]

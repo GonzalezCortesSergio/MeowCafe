@@ -32,4 +32,16 @@ public class Gato {
 	@Builder.Default
 	private List<Vacuna> vacunas = new ArrayList<>();
 
+
+	public void addVacuna(Vacuna v) {
+
+		v.setGato(this);
+		this.vacunas.add(v);
+	}
+
+	public void removeVacuna(Vacuna v) {
+
+		this.vacunas.remove(v);
+		v.setGato(null);
+	}
 }

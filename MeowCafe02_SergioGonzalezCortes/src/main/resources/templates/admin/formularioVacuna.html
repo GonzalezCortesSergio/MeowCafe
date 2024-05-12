@@ -94,8 +94,8 @@
 
     <form class="w-100" method="post" th:action="@{/admin/vacunas/ponerVacuna}" th:object="${vacuna}" name="formularioVacuna" id="formularioVacuna">
         <div class="m-3 input-group">
-            <label for="nombre" class="input-group-text">Nombre:</label>
-            <input type="text" class="form-control" id="nombre" placeholder="Nombre de la vacuna" name="nombre" th:field="*{nombre}" required>
+            <label for="nombreVacuna" class="input-group-text">Nombre:</label>
+            <input type="text" class="form-control" id="nombreVacuna" placeholder="Nombre de la vacuna" name="nombreVacuna" th:field="*{nombreVacuna}" required>
         </div>
 
         <div class="m-3 input-group">
@@ -103,6 +103,11 @@
             <label for="fechaVacuna" class="input-group-text">Fecha de la vacunación:</label>
             <input type="date" class="form-control" id="fechaVacuna" name="fechaVacuna" th:field="*{fechaVacuna}" required/>
         </div>
+
+        <input type="hidden" name="id" th:field="${gato.id}" />
+        <input type="hidden" class="form-control" id="nombre" placeholder="Nombre del gato" name="nombre" th:field="${gato.nombre}">
+        <input type="hidden" class="form-control" id="horasDisponibles" name="horasDisponibles" th:field="${gato.horasDisponibles}">
+        <input type="hidden" class="form-control" id="imagen" placeholder="URL de la imagen del gato" name="imagen" th:field="${gato.imagen}">
         <div class="text-center mt-4">
             <button type="submit" class="btn btn-primary">Agregar</button>
         </div>

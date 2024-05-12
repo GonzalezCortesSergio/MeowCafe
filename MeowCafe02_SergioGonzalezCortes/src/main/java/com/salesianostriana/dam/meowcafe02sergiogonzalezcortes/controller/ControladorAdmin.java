@@ -100,7 +100,7 @@ public class ControladorAdmin {
     @PostMapping("/vacunas/ponerVacuna")
     public String ponerVacuna (@ModelAttribute("gato") Gato gato, @ModelAttribute("vacuna") Vacuna vacuna) {
 
-        vacuna.addToGato(gato);
+        gato.addVacuna(vacuna);
         servicioGato.edit(gato);
 
         return "redirect:/admin/gatos";
