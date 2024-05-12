@@ -5,21 +5,21 @@ public enum TipoUsuario {
 	ADMIN("ADMIN"),
 	CLIENTE("CLIENTE");
 	
-	private String tipo;
+	private String valor;
 	
 	
-	private TipoUsuario (String tipo) {
+	private TipoUsuario (String valor) {
 		
-		this.tipo = tipo;
+		this.valor = valor;
 	}
 	
-	public String getTipo () {
+	public String getValor () {
 		
-		return tipo;
+		return valor;
 	}
 	
-	public void setTipo(String tipo) {
+	public void setValor(String valor) {
 		
-		this.tipo = tipo;
+		this.valor = valor;
 	}
 }

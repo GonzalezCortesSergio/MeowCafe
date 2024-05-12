@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://thymeleaf.org">
+<html lang="es" xmlns:th="http://thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -47,12 +48,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="./gatitos.html" th:href="@{/gatos}">Gatitos</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="admin/clientes.html" th:href="@{/admin/clientes}">Clientes</a>
-                    </li>
 
                     <li class="nav-item ms-5 ps-5">
-
                         <a href="./login.html" th:href="@{/login}">
                         <button type="button" class="btn btn-dark">
                             Usuario

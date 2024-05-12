@@ -18,7 +18,7 @@ public class Vacuna {
     @GeneratedValue
     private Long id;
 
-    private String nombre;
+    private String nombreVacuna;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaVacuna;
@@ -27,17 +27,4 @@ public class Vacuna {
     @ManyToOne
     private Gato gato;
 
-
-
-    public void addToGato(Gato gato) {
-
-        this.gato = gato;
-        gato.getVacunas().add(this);
-    }
-
-    public void removeFromGato(Gato gato) {
-
-        gato.getVacunas().remove(this);
-        this.gato = null;
-    }
 }

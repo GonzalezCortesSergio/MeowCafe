@@ -32,6 +32,7 @@ public class ControladorUsuario {
 	public String registroUsuario(@ModelAttribute("usuario") Usuario usuario) {
 
 		usuario.setTipo(TipoUsuario.CLIENTE);
+
 		servicioUsuario.save(usuario);
 		return "redirect:/";
 	}

@@ -87,6 +87,7 @@
 
 <div class="w-50 h-100 mx-auto mt-5">
 
+
     <form class="w-50 mx-auto mt-5" th:action="@{/login}" method="post" name="formularioLogin" id="formularioLogin">
 
             <div class="m-3 my-5 input-group">
@@ -96,7 +97,7 @@
 
             <div class="m-3 my-5 input-group">
                 <label for="password" class="input-group-text">Contraseña:</label>
-                <input type="password" class="form-control" id="password" placeholder="Su contraseña" name="password">
+                <input type="password" class="form-control" id="password" placeholder="Su contraseña" name="password" required>
                 <i class="bi bi-eye-fill input-group-text"></i>
             </div>
 
@@ -107,6 +108,8 @@
             <a href="./formularioRegistro.html" th:href="@{/formularioRegistro}">¿No tienes una cuenta creada? Regístrate aquí</a>
         </div>
     </form>
+
 </div>
+<p th:if="${error}" class="bg-danger text-center w-25 mx-auto mt-5">Nombre de usuario o contraseña equivocados</p>
 </body>
 </html>
