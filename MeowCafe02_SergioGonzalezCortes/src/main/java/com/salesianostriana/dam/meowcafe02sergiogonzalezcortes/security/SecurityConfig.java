@@ -60,7 +60,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(
                 auth -> auth.requestMatchers("/css/**", "/js/**", "/img/**", "/h2-console/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/index", "/sobreNosotros", "/login", "/gatos", "/error").permitAll()
+                        .requestMatchers("/index", "/sobreNosotros", "/login", "/gatos","/formularioRegistro", "/formularioRegistro/registro", "/error").permitAll()
                         .anyRequest().authenticated())
                 .requestCache(cache -> cache.requestCache(requestCache))
                 .formLogin(loginz -> loginz

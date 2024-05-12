@@ -11,5 +11,5 @@ insert into gato (id, nombre, horas_disponibles, ocupado, imagen) values (NEXTVA
 
 
 
-insert into usuario (id, nombre, apellidos, email, username, password, tipo, es_premium) values (1, 'admin', 'admin', 'admin@gmail.com', 'admin', '{noop}admin', 'ADMIN', true);
-insert into usuario (id, nombre, apellidos, email, username, password, tipo, es_premium) values (2, 'user', 'user', 'user@gmail.com', 'user', '{noop}1234', 'CLIENTE', true);
+insert into usuario (id, nombre, apellidos, email, username, password, tipo, es_premium) values (NEXTVAL('usuario_seq'), 'admin', 'admin', 'admin@gmail.com', 'admin', '{noop}admin', 'ADMIN', true);
+insert into usuario (id, nombre, apellidos, email, username, password, tipo, es_premium) values (NEXTVAL('usuario_seq'), 'user', 'user', 'user@gmail.com', 'user', '{noop}1234', 'CLIENTE', true);
