@@ -52,6 +52,11 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                         <a class="nav-link" href="./gatitos.html" th:href="@{/admin/gatos}">Gatitos</a>
                     </li>
 
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="./productos.html" th:href="@{/admin/productos}">Productos</a>
+                    </li>
+
                     <li class="nav-item ms-5 ps-5">
                         <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">
                             <span sec:authentication="name">Usuario</span>
@@ -93,8 +98,8 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 					<td th:text="${cliente.nombre}">Nombre del cliente</td>
 					<td th:text="${cliente.apellidos}">Apellidos del cliente</td>
 					<td th:text="${cliente.email}">Email del cliente</td>
-					<td th:text="${cliente.nombreUsuario}">Nombre de usuario del cliente</td>
-					<td th:text="${cliente.contrasena}">Contraseña del cliente</td>
+					<td th:text="${cliente.username}">Nombre de usuario del cliente</td>
+					<td th:text="${cliente.password}">Contraseña del cliente</td>
 				</tr>
 			</tbody>
 		</table>
