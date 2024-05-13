@@ -182,5 +182,13 @@ public class ControladorAdmin {
         return "redirect:/admin/productos";
     }
 
+    @GetMapping("borrarProducto/{id}")
+    public String borrarProducto(@PathVariable("id") long id) {
+
+        if(servicioProducto.findById(id).isPresent()) {
+            servicioProducto.deleteById(id);
+        }
+        return "redirect:/admin/productos";
+    }
 
 }
