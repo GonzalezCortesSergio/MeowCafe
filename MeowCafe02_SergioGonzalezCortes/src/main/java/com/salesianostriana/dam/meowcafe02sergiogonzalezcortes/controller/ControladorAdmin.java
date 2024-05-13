@@ -136,6 +136,9 @@ public class ControladorAdmin {
         return "admin/clientes";
     }
 
+
+    //Métodos productos
+
     @GetMapping("/productos")
     public String mostrarProductos(Model model) {
 
