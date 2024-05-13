@@ -1,10 +1,8 @@
 package com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.controller;
 
-import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.Gato;
-import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.TipoUsuario;
-import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.Usuario;
-import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.Vacuna;
+import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.*;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioGato;
+import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioProducto;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +23,9 @@ public class ControladorAdmin {
 
     @Autowired
     private ServicioUsuario servicioUsuario;
+
+    @Autowired
+    private ServicioProducto servicioProducto;
 
 
 
@@ -135,6 +136,29 @@ public class ControladorAdmin {
         return "admin/clientes";
     }
 
+    @GetMapping("/productos")
+    public String mostrarProductos(Model model) {
+
+        model.addAttribute("productos", servicioProducto.findAll());
+
+        return "admin/productos";
+    }
+
+    @GetMapping("/formularioProductos")
+    public String formularioProductos(Model model) {
+
+        model.addAttribute("producto", new Producto());
+
+        return "admin/formularioProductos";
+    }
+
+    @PostMapping("/formularioProductos/agregar")
+    public String guardarProductoNuevo(@ModelAttribute("producto") Producto producto) {
+
+        servicioProducto.save(producto);
+
+        return "redirect:/admin/productos";
+    }
 
 
 }
