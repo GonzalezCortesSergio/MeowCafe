@@ -1,6 +1,7 @@
 package com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service;
 
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.TipoUsuario;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
