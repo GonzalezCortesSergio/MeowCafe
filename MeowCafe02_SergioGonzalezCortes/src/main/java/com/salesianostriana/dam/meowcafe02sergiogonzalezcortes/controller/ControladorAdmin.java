@@ -160,5 +160,27 @@ public class ControladorAdmin {
         return "redirect:/admin/productos";
     }
 
+    @GetMapping("/formularioProductos/{id}")
+    public String formularioEditarProductos(@PathVariable("id") Long id, Model model) {
+
+        if(servicioProducto.findById(id).isPresent()){
+
+            model.addAttribute("producto", servicioProducto.findById(id).get());
+
+            return "admin/formularioEditarProductos";
+        }
+
+        return "redirect:/admin/productos";
+
+    }
+
+    @PostMapping("/formularioProductos/editar")
+    public String editarProducto(@ModelAttribute("producto") Producto producto) {
+
+        servicioProducto.edit(producto);
+
+        return "redirect:/admin/productos";
+    }
+
 
 }

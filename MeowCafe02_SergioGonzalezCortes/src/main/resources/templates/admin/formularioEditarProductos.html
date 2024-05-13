@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org"
-xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -96,10 +96,11 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <div class="w-50 h-100 mx-auto">
 
-    <form class="w-100" method="post" th:action="@{/admin/formularioProductos/agregar}" th:object="${producto}" name="formularioProducto" id="formularioProducto">
+    <form class="w-100" method="post" th:action="@{/admin/formularioProductos/editar}" th:object="${producto}" name="formularioProducto" id="formularioProducto">
+        <input type="hidden" id="id" name="id" th:field="*{id}" />
         <div class="m-3 input-group">
             <label for="nombre" class="input-group-text">Nombre:</label>
-            <input type="text" class="form-control" id="nombre" placeholder="Nombre del producto" name="nombre" th:field="*{nombre}">
+            <input type="text" class="form-control" id="nombre" placeholder="Nombre del producto" name="nombre" th:field="*{nombre}" readonly>
         </div>
 
         <div class="m-3 input-group">
@@ -109,12 +110,12 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
         <div class="m-3 input-group">
             <label for="imagen" class="input-group-text">Imagen del producto (URL):</label>
-            <input type="text" class="form-control" id="imagen" placeholder="URL de la imagen del producto" name="imagen" th:field="*{imagen}">
+            <input type="text" class="form-control" id="imagen" placeholder="URL de la imagen del producto" name="imagen" th:field="*{imagen}" readonly>
         </div>
 
         <div class="m-3 input-group">
             <label for="tipo" class="input-group-text">Tipo de producto</label>
-            <select class="form-select" id="tipo" name="tipo" th:field="*{tipoProducto}">
+            <select class="form-select" id="tipo" name="tipo" th:field="*{tipoProducto}" disabled>
                 <option value="BEBIDA">Bebida</option>
                 <option value="COMIDA">Comida</option>
             </select>
