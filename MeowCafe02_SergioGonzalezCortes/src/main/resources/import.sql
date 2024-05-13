@@ -9,6 +9,7 @@ insert into gato (id, nombre, horas_disponibles, ocupado, imagen) values (NEXTVA
 insert into gato (id, nombre, horas_disponibles, ocupado, imagen) values (NEXTVAL('gato_seq'), 'Kerwin', '4:36', true, 'https://www.veteralia.com/wp-content/uploads/2017/03/Intro.jpg');
 insert into gato (id, nombre, horas_disponibles, ocupado, imagen) values (NEXTVAL('gato_seq'), 'Caryl', '6:10', false, 'https://cadena100-cdnmed.cadena100.es/resources/jpg/7/4/1588871366747.jpg');
 
+insert into producto(id, nombre, precio, tipo_producto, imagen) values(NEXTVAL('producto_seq'), 'Tarta de queso', 5.43, 'COMIDA', 'https://paprikagourmetonline.es/wp-content/uploads/2021/04/tarta-de-queso-sin-gluten-nouceland.jpg');
 
 
 insert into usuario (id, nombre, apellidos, email, username, password, tipo, es_premium) values (NEXTVAL('usuario_seq'), 'admin', 'admin', 'admin@gmail.com', 'admin', '{noop}admin', 'ADMIN', true);
