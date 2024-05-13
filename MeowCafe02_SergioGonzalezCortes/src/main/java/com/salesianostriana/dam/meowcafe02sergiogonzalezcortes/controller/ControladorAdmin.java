@@ -1,6 +1,7 @@
 package com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.controller;
 
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.*;
+import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioCombo;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioGato;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioProducto;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioUsuario;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.Date;
+
 
 @Controller
 @RequestMapping("/admin")
@@ -26,6 +28,9 @@ public class ControladorAdmin {
 
     @Autowired
     private ServicioProducto servicioProducto;
+
+    @Autowired
+    private ServicioCombo servicioCombo;
 
 
 
@@ -192,6 +197,41 @@ public class ControladorAdmin {
             servicioProducto.deleteById(id);
         }
         return "redirect:/admin/productos";
+    }
+
+
+    //Métodos combos
+
+    @GetMapping("/combos")
+    public String mostrarCombos(Model model) {
+
+        model.addAttribute("combos", servicioCombo.findAll());
+
+        return "admin/combos";
+
+    }
+
+    @GetMapping("/formularioCombo")
+    public String formularioCombo(Model model) {
+
+        model.addAttribute("combo", new Combo());
+        model.addAttribute("productos", servicioProducto.findAll());
+
+        return "admin/formularioCombos";
+    }
+
+    @PostMapping("/formularioCombo/agregar")
+    public String agregarCombo(@ModelAttribute("combo")Combo combo, @RequestParam("productoId") Long productoId, @RequestParam("productoId-2") Long segundoProductoId) {
+        if(servicioProducto.findById(productoId).isPresent() && servicioProducto.findById(segundoProductoId).isPresent()) {
+            servicioCombo.addProducto(combo, servicioProducto.findById(productoId).get());
+            servicioCombo.addProducto(combo, servicioProducto.findById(segundoProductoId).get());
+            servicioCombo.obtenerPrecioCombo(combo);
+            servicioCombo.save(combo);
+        }
+
+
+
+        return "redirect:/admin/combos";
     }
 
 }
