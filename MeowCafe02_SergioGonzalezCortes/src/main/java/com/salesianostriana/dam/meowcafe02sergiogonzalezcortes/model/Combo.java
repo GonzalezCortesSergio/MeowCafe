@@ -37,7 +37,7 @@ public class Combo {
 			joinColumns = @JoinColumn(name = "combo_id"),
 			inverseJoinColumns = @JoinColumn(name = "producto_id")
 	)
-	private List<Producto> productos = new ArrayList<Producto>();
+	private List<Producto> producto = new ArrayList<Producto>();
 
 
 } 

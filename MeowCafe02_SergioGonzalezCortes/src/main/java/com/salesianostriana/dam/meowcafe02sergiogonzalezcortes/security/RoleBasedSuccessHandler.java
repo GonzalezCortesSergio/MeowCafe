@@ -21,15 +21,18 @@ import java.util.Map;
 @Log
 public class RoleBasedSuccessHandler implements AuthenticationSuccessHandler {
 
-    private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+   private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
-    private final String ROLE_CLIENTE_URL = "/web/index";
-    private final String ROLE_ADMIN_URL = "/admin/index";
-    private final String ROLE_DEFAULT_URL = "/login?error=Error en el rol asignado";
+
+   private final String ROLE_USER_URL = "/cliente/index";
+   private final String ROLE_ADMIN_URL = "/admin/index";
+   private final String ROLE_DEFAULT_URL = "/login?error=Error en el rol asignado";
+
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 
         String role = getMaxRole(authentication.getAuthorities());
+
 
         String redirectUrl = determineTargetUrl(role);
 
@@ -42,11 +45,12 @@ public class RoleBasedSuccessHandler implements AuthenticationSuccessHandler {
         redirectStrategy.sendRedirect(request, response, redirectUrl);
     }
 
-    public String getMaxRole(Collection<? extends GrantedAuthority> collection) {
+
+    private String getMaxRole(Collection<? extends GrantedAuthority> collection) {
 
         List<GrantedAuthority> authoritiesList = new ArrayList<>(collection);
 
-        if (authoritiesList.isEmpty())
+        if(authoritiesList.isEmpty())
             return "ROLE_DEFAULT";
 
 
@@ -55,18 +59,19 @@ public class RoleBasedSuccessHandler implements AuthenticationSuccessHandler {
                 .map(GrantedAuthority::getAuthority)
                 .sorted((role1, role2) ->
                         role_weight.getOrDefault(role2, Integer.MIN_VALUE)
-                            - role_weight.getOrDefault(role1, Integer.MIN_VALUE))
+                - role_weight.getOrDefault(role1, Integer.MIN_VALUE))
                 .findFirst()
                 .get();
     }
 
+
     private String determineTargetUrl(String role) {
 
-        return switch(role) {
+        return switch (role) {
 
             case "ROLE_ADMIN" -> ROLE_ADMIN_URL;
-            case "ROLE_CLIENTE" -> ROLE_CLIENTE_URL;
-            default ->  ROLE_DEFAULT_URL;
+            case "ROLE_CLIENTE" -> ROLE_USER_URL;
+            default -> ROLE_DEFAULT_URL;
         };
     }
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="https://www.thymeleaf.org">
+<html lang="es" xmlns:th="https://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -42,40 +43,30 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="../index.html" th:href="@{/index}">Inicio</a>
+                        <a class="nav-link" href="./index.html" th:href="@{/admin/index}">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../sobreNosotros.html" th:href="@{/sobreNosotros}">Sobre nosotros</a>
+                        <a class="nav-link" href="./sobreNosotros.html" th:href="@{/admin/sobreNosotros}">Sobre nosotros</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../gatitos.html" th:href="@{/gatos}">Gatitos</a>
+                        <a class="nav-link" href="./gatitos.html" th:href="@{/admin/gatos}">Gatitos</a>
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="./productos.html" th:href="@{/admin/productos}">Productos</a>
                     </li>
 
                     <li class="nav-item ms-5 ps-5">
                         <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">
-                            Usuario
+                            <span sec:authentication="name">Usuario</span>
                         </button>
 
                         <ul class="dropdown-menu">
 
                             <li>
-                                <form class="w-50 mx-auto" action="/action_page.php">
-                                    <div class="mb-3 mt-3">
-                                    <label for="email" class="form-label">Email:</label>
-                                    <input type="email" class="form-control" id="email" placeholder="suemail@gmail.com" name="email">
-                                    </div>
-                                    <div class="mb-3">
-                                    <label for="pwd" class="form-label">Contraseña:</label>
-                                    <input type="password" class="form-control" id="pwd" placeholder="Su contraseña aquí" name="pswd">
-                                    </div>
-                                    <div class="form-check mb-3">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" name="remember"> Recuérdame
-                                    </label>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-                                    <br />
-                                    <a th:href="@{/formularioRegistro}">¿No tienes una cuenta creada? Regístrate aquí</a>
+                                <form class="w-50 mx-auto" th:action="@{/logout}" name="formularioLogout" id="formularioLogout" method="post">
+                                    <a href="javascript:document.getElementById('formularioLogout').submit()">Salir</a>
                                 </form>
                             </li>
                         </ul>
@@ -107,8 +98,8 @@
 					<td th:text="${cliente.nombre}">Nombre del cliente</td>
 					<td th:text="${cliente.apellidos}">Apellidos del cliente</td>
 					<td th:text="${cliente.email}">Email del cliente</td>
-					<td th:text="${cliente.nombreUsuario}">Nombre de usuario del cliente</td>
-					<td th:text="${cliente.contrasena}">Contraseña del cliente</td>
+					<td th:text="${cliente.username}">Nombre de usuario del cliente</td>
+					<td th:text="${cliente.password}">Contraseña del cliente</td>
 				</tr>
 			</tbody>
 		</table>

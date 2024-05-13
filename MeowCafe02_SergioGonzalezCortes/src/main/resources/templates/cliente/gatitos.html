@@ -43,16 +43,10 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="./index.html" th:href="@{/admin/index}">Inicio</a>
+                <a class="nav-link" href="./index.html" th:href="@{/cliente/index}">Inicio</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./sobreNosotros.html" th:href="@{/admin/sobreNosotros}">Sobre nosotros</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="clientes.html" th:href="@{/admin/clientes}">Clientes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="./productos.html" th:href="@{/admin/productos}">Productos</a>
+                <a class="nav-link" href="./sobreNosotros.html" th:href="@{/cliente/sobreNosotros}">Sobre nosotros</a>
             </li>
 
             <li class="nav-item ms-5 ps-5">
@@ -88,46 +82,9 @@
                 <p th:case="false" class="card-text">Disponible</p>
 
             </div>
-
-            <div>
-
-                <a href="#" th:href="@{formularioGatos/{id}(id=${gatito.id})}"><input type="button" value="Editar" class="btn btn-info" /></a>
-                <a th:href="@{borrarGato/{id}(id=${gatito.id})}"><input type="button" value="Borrar" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalBorrarGato"/></a>
-            </div>
         </div>
-    </div>
-
-    <div class="text-center">
-
-        <a href="formularioGatitos.html" th:href="@{/admin/formularioGatos}"><input type="button" value="Agregar gatito" class="btn btn-info" /></a>
     </div>
 </main>
-
-
-<div class="modal" id="modalBorrarGato">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <div class="modal-header">
-
-                <h4 class="modal-title">¿Seguro que desea borrarlo?</h4>
-            </div>
-
-            <div class="modal-body">
-
-                <p>En el caso de que se elimine no se podrán revertir los cambios</p>
-
-            </div>
-
-            <div class="modal-footer">
-                <div class=" d-flex justify-content-between">
-                    <a href="#" th:href="@{borrarGato/confirmarBorrado/{id}}"><input type="button" class="btn btn-info" value="Borrar" data-bs-dismiss="modal"/></a>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 </body>
 

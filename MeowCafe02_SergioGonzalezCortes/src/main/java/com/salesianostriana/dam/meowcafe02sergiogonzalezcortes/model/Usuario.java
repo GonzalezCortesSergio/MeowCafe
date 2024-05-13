@@ -18,7 +18,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Usuario implements UserDetails {
+@SuppressWarnings("serial")
+public class Usuario implements UserDetails{
 
 	@Id
 	@GeneratedValue
@@ -32,14 +33,13 @@ public class Usuario implements UserDetails {
 
 	@Enumerated(value = EnumType.STRING)
 	private TipoUsuario tipo;
-	private boolean esPremium;
 
+	private boolean esPremium;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-
 		String role = "ROLE_";
-		role += tipo.toString();
+		role+= tipo.getValor();
 
 		return List.of(new SimpleGrantedAuthority(role));
 	}

@@ -3,6 +3,7 @@ package com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.controller;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.TipoUsuario;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,9 @@ public class ControladorUsuario {
 
 	@Autowired
 	private ServicioUsuario servicioUsuario;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 
 	@GetMapping("/formularioRegistro")
@@ -32,6 +36,8 @@ public class ControladorUsuario {
 	public String registroUsuario(@ModelAttribute("usuario") Usuario usuario) {
 
 		usuario.setTipo(TipoUsuario.CLIENTE);
+		usuario.setPassword("{noop}"+usuario.getPassword());
+
 		servicioUsuario.save(usuario);
 		return "redirect:/";
 	}

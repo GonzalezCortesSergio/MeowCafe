@@ -21,11 +21,13 @@ public class Producto {
 	
 	@Enumerated(EnumType.STRING)
 	private TipoProducto tipoProducto;
+
+	private String imagen;
 	
-	@ManyToMany(mappedBy = "productos", fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "producto", fetch = FetchType.EAGER)
 	@Builder.Default
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
-	private List<Combo> combos = new ArrayList<Combo>();
+	private List<Combo> combo = new ArrayList<Combo>();
 
 }

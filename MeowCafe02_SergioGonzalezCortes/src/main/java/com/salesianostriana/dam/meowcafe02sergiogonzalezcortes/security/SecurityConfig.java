@@ -10,12 +10,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.savedrequest.NullRequestCache;
@@ -26,15 +22,26 @@ import org.springframework.security.web.savedrequest.RequestCache;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
-
     private final AuthenticationSuccessHandler authenticationSuccessHandler;
 
 
     @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider () {
+    AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
+
+        AuthenticationManagerBuilder authBuilder =
+                http.getSharedObject(AuthenticationManagerBuilder.class);
+
+
+        return authBuilder
+                .authenticationProvider(daoAuthenticationProvider())
+                .build();
+    }
+
+
+    @Bean
+    DaoAuthenticationProvider daoAuthenticationProvider() {
 
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
 
@@ -45,45 +52,30 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager
-    authenticationManager(HttpSecurity http) throws Exception {
-
-        AuthenticationManagerBuilder authBuilder =
-                http.getSharedObject(AuthenticationManagerBuilder.class);
-
-        return authBuilder
-                .authenticationProvider(daoAuthenticationProvider())
-                .build();
-    }
-
-
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         RequestCache requestCache = new NullRequestCache();
+
+
         http.authorizeHttpRequests(
-                auth -> auth.requestMatchers("/css/**", "/js/**", "/h2-console/**").permitAll()
+                auth -> auth.requestMatchers("/css/**", "/js/**", "/img/**", "/h2-console/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/index","/login", "/sobreNosotros", "/gatos", "/error").permitAll()
+                        .requestMatchers("/index", "/sobreNosotros", "/login", "/gatos","/formularioRegistro", "/formularioRegistro/registro", "/error").permitAll()
                         .anyRequest().authenticated())
                 .requestCache(cache -> cache.requestCache(requestCache))
-                .formLogin(
-                loginz -> loginz.
-                        loginPage("/login")
+                .formLogin(loginz -> loginz
+                        .loginPage("/login")
                         .successHandler(authenticationSuccessHandler)
-                        .permitAll()
-        ).logout(
-                logout -> logout.logoutUrl("/logout")
+                        .permitAll())
+                .logout(logoutz -> logoutz
+                        .logoutUrl("/logout")
                         .logoutSuccessUrl("/index")
-                        .permitAll()
-        );
+                        .permitAll());
 
-
-        http.csrf(AbstractHttpConfigurer::disable);
+        http.csrf(csrfz -> csrfz.disable());
         http.headers(headersz -> headersz
-                .frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
+                .frameOptions(frameOptionsz -> frameOptionsz.disable()));
 
-
-        return http.build();
+            return http.build();
     }
 }

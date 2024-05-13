@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>MeowCafé | Registro de vacuna</title>
+    <link rel="stylesheet" href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="../../static/js/script.js" th:src="@{/js/script.js}" defer></script>
+    <style type="text/css">
+
+        body {
+
+            background-color: #c57d56;
+        }
+
+        nav{
+
+            background-color: #8d4925;
+        }
+
+        h1 {
+
+            background-color: #7e5950;
+        }
+
+        .dropdown-menu {
+
+            background-color: #c57d56;
+        }
+
+        .input-group-text {
+
+            background-color: #7e5950;
+        }
+
+        .form-control {
+
+
+            background-color: #c57d56;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<h1 class="	display-5 text-center text-light py-5 w-100 m-auto">Registra una nueva vacuna</h1>
+
+<nav class="navbar-expand py-3 mb-5">
+
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse d-flex justify-content-between" style="list-style-type: none;" id="mynavbar">
+            <li class="nav-item">
+                <button class="btn btn-outline-primary border-0" type="button" data-bs-toggle="" data-bs-target="" style="background-color: #c57d56;">RESERVA</button>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="./index.html" th:href="@{/admin/index}" >Inicio</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="./sobreNosotros" th:href="@{/admin/sobreNosotros}" >Sobre nosotros</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./gatitos.html" th:href="@{/admin/gatos}">Gatitos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./clientes.html" th:href="@{/admin/clientes}">Clientes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./productos.html" th:href="@{/admin/productos}">Productos</a>
+            </li>
+
+            <li class="nav-item ms-5 ps-5">
+                <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">
+                    <span sec:authentication="name">Usuario</span>
+                </button>
+
+                <ul class="dropdown-menu">
+
+                    <li>
+                        <form class="w-50 mx-auto" th:action="@{/logout}" name="formularioLogout" id="formularioLogout" method="post">
+                            <a href="javascript:document.getElementById('formularioLogout').submit()">Salir</a>
+                        </form>
+                    </li>
+                </ul>
+            </li>
+        </div>
+    </div>
+</nav>
+
+
+<div class="w-50 h-100 mx-auto">
+
+    <form class="w-100" method="post" th:action="@{/admin/vacunas/ponerVacuna}" th:object="${vacuna}" name="formularioVacuna" id="formularioVacuna">
+        <div class="m-3 input-group">
+            <label for="nombreVacuna" class="input-group-text">Nombre:</label>
+            <input type="text" class="form-control" id="nombreVacuna" placeholder="Nombre de la vacuna" name="nombreVacuna" th:field="*{nombreVacuna}" required>
+        </div>
+
+        <div class="m-3 input-group">
+
+            <label for="fechaVacuna" class="input-group-text">Fecha de la vacunación:</label>
+            <input type="date" class="form-control" id="fechaVacuna" name="fechaVacuna" th:field="*{fechaVacuna}" required/>
+        </div>
+
+        <input type="hidden" name="id" th:field="${gato.id}" />
+        <input type="hidden" class="form-control" id="nombre" placeholder="Nombre del gato" name="nombre" th:field="${gato.nombre}">
+        <input type="hidden" class="form-control" id="horasDisponibles" name="horasDisponibles" th:field="${gato.horasDisponibles}">
+        <input type="hidden" class="form-control" id="imagen" placeholder="URL de la imagen del gato" name="imagen" th:field="${gato.imagen}">
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary">Agregar</button>
+        </div>
+    </form>
+
+    <div class="text-light"></div>
+</div>
+
+
+</body>
+</html>
