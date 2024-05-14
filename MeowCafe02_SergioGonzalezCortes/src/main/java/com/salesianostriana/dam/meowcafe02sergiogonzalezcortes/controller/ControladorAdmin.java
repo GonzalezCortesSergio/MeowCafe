@@ -109,6 +109,7 @@ public class ControladorAdmin {
     public String ponerVacuna (@ModelAttribute("gato") Gato gato, @ModelAttribute("vacuna") Vacuna vacuna) {
 
         gato.addVacuna(vacuna);
+        servicioGato.cambiarDisponibilidad(gato);
         servicioGato.edit(gato);
 
         return "redirect:/admin/gatos";
