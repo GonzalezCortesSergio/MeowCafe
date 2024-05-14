@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -215,7 +216,14 @@ public class ControladorAdmin {
     public String formularioCombo(Model model) {
 
         model.addAttribute("combo", new Combo());
-        model.addAttribute("productos", servicioProducto.findAll());
+        model.addAttribute("bebidas", servicioProducto.findAll()
+                .stream()
+                .filter(producto -> producto.getTipoProducto().getTipo().equals("BEBIDA"))
+                .collect(Collectors.toList()));
+        model.addAttribute("comidas", servicioProducto.findAll()
+                .stream()
+                .filter(producto -> producto.getTipoProducto().getTipo().equals("COMIDA"))
+                .collect(Collectors.toList()));
 
         return "admin/formularioCombos";
     }

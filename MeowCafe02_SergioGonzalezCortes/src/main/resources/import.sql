@@ -10,7 +10,9 @@ insert into gato (id, nombre, horas_disponibles, ocupado, imagen) values (NEXTVA
 insert into gato (id, nombre, horas_disponibles, ocupado, imagen) values (NEXTVAL('gato_seq'), 'Caryl', '6:10', false, 'https://cadena100-cdnmed.cadena100.es/resources/jpg/7/4/1588871366747.jpg');
 
 insert into producto(id, nombre, precio, tipo_producto, imagen) values(NEXTVAL('producto_seq'), 'Tarta de queso', 5.43, 'COMIDA', 'https://paprikagourmetonline.es/wp-content/uploads/2021/04/tarta-de-queso-sin-gluten-nouceland.jpg');
-
+insert into producto(id, nombre, precio, tipo_producto, imagen) values(NEXTVAL('producto_seq'), 'Carajillo', 3.4, 'BEBIDA', 'https://imag.bonviveur.com/carajillo.jpg');
+insert into producto(id, nombre, precio, tipo_producto, imagen) values(NEXTVAL('producto_seq'), 'Pastel de calabaza', 4.15, 'COMIDA', 'https://diabetesmarquez.com/wp-content/uploads/2020/04/DSC_0209-768x512.jpg');
+insert into producto(id, nombre, precio, tipo_producto, imagen) values(NEXTVAL('producto_seq'), 'Capuccino', 2.50, 'BEBIDA', 'https://lilobrunch.com/cdn/shop/products/capuccino_1200x1200.jpg?v=1645735077');
 
 insert into usuario (id, nombre, apellidos, email, username, password, tipo, es_premium) values (NEXTVAL('usuario_seq'), 'admin', 'admin', 'admin@gmail.com', 'admin', '{noop}admin', 'ADMIN', true);
 insert into usuario (id, nombre, apellidos, email, username, password, tipo, es_premium) values (NEXTVAL('usuario_seq'), 'user', 'user', 'user@gmail.com', 'user', '{noop}1234', 'CLIENTE', true);

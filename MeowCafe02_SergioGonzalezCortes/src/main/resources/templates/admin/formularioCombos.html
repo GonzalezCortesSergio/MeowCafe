@@ -106,16 +106,16 @@
         </div>
 
         <div class="m-3 input-group">
-            <label for="productoId" class="input-group-text">Primer producto:</label>
+            <label for="productoId" class="input-group-text">Bebida:</label>
             <select class="form-control" name="productoId" id="productoId">
-                <option th:each="producto : ${productos}" th:value="${producto.id}" th:text="${producto.nombre}">Producto</option>
+                <option th:each="producto : ${bebidas}" th:value="${producto.id}" th:text="${producto.nombre}">Producto</option>
             </select>
         </div>
 
         <div class="m-3 input-group">
-            <label for="productoId-2" class="input-group-text">Segundo producto:</label>
+            <label for="productoId-2" class="input-group-text">Comida:</label>
             <select class="form-control" name="productoId-2" id="productoId-2">
-                <option th:each="producto : ${productos}" th:value="${producto.id}" th:text="${producto.nombre}">Producto</option>
+                <option th:each="producto : ${comidas}" th:value="${producto.id}" th:text="${producto.nombre}">Producto</option>
             </select>
         </div>
 
