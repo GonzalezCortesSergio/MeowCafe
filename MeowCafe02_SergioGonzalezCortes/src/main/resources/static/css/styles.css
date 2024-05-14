@@ -1,0 +1,50 @@
+body {
+
+    background-color: #c57d56;
+}
+
+p {
+
+    font-size: 14pt;
+
+}
+
+h2 {
+
+    font-size: 24pt;
+}
+
+nav{
+
+    background-color: #8d4925;
+}
+
+h1 {
+
+    background-color: #7e5950;
+}
+
+.dropdown-menu {
+
+    background-color: #c57d56;
+}
+
+.input-group-text {
+
+    background-color: #7e5950;
+}
+
+.form-control {
+
+    background-color: #c57d56;
+}
+
+.d-flex {
+
+    background-color: #8d4925;
+}
+
+#primerGrupo, #segundoGrupo {
+
+    border-bottom:none;
+}
