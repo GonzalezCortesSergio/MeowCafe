@@ -220,14 +220,53 @@ public class ControladorAdmin {
     @PostMapping("/formularioCombo/agregar")
     public String agregarCombo(@ModelAttribute("combo")Combo combo, @RequestParam("productoId") Long productoId, @RequestParam("productoId-2") Long segundoProductoId) {
         if(servicioProducto.findById(productoId).isPresent() && servicioProducto.findById(segundoProductoId).isPresent()) {
-            servicioCombo.addProducto(combo, servicioProducto.findById(productoId).get());
-            servicioCombo.addProducto(combo, servicioProducto.findById(segundoProductoId).get());
+
+            combo.addProducto(servicioProducto.findById(productoId).get());
+            servicioProducto.edit(servicioProducto.findById(productoId).get());
+
+            combo.addProducto(servicioProducto.findById(segundoProductoId).get());
+            servicioProducto.edit(servicioProducto.findById(segundoProductoId).get());
+
             servicioCombo.obtenerPrecioCombo(combo);
+
             servicioCombo.save(combo);
         }
 
 
 
+        return "redirect:/admin/combos";
+    }
+
+    @GetMapping("/formularioCombo/{id}")
+    public String formularioEditarCombo(@PathVariable("id") Long id, Model model) {
+
+        if (servicioCombo.findById(id).isPresent()) {
+
+            model.addAttribute("combo", servicioCombo.findById(id).get());
+            model.addAttribute("bebidas",servicioProducto.productosTipo(TipoProducto.BEBIDA));
+            model.addAttribute("comidas", servicioProducto.productosTipo(TipoProducto.COMIDA));
+
+            return "admin/formularioEditarCombo";
+        }
+
+        return "redirect:/admin/combos";
+    }
+
+    @PostMapping("/formularioCombo/editar")
+    public String editarCombo(@ModelAttribute("combo") Combo combo, @RequestParam("productoId") long productoId, @RequestParam("productoId-2") long segundoProductoId) {
+
+        if(servicioProducto.findById(productoId).isPresent() && servicioProducto.findById(segundoProductoId).isPresent()) {
+
+            combo.addProducto(servicioProducto.findById(productoId).get());
+            servicioProducto.edit(servicioProducto.findById(productoId).get());
+
+            combo.addProducto(servicioProducto.findById(segundoProductoId).get());
+            servicioProducto.edit(servicioProducto.findById(segundoProductoId).get());
+
+            servicioCombo.obtenerPrecioCombo(combo);
+
+            servicioCombo.edit(combo);
+        }
         return "redirect:/admin/combos";
     }
 

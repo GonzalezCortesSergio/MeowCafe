@@ -76,14 +76,15 @@
 
             <td th:text="${combo.id}">ID del combo</td>
             <td th:text="${combo.nombreCombo}">Nombre del combo</td>
-            <td th:text="${combo.precioCombo}">Precio del combo</td>
+            <td th:text=${#numbers.formatDecimal(combo.precioCombo,1,2)}>Precio del combo</td>
             <td th:switch="${combo.esOferta}">
-                <p th:case="true">Se encuentra en ofertas</p>
-                <p th:case="false">No se encuentra en ofertas</p>
+                <span th:case="true">Se encuentra en ofertas</span>
+                <span th:case="false">No se encuentra en ofertas</span>
             </td>
             <td><div th:each="producto : ${combo.producto}">
                 <span th:text="${producto.nombre}">Nombre de los productos</span>
             </div></td>
+            <td><a href="#" th:href="@{/admin/formularioCombo/{id}(id=${combo.id})}"><input type="button" value="Editar" class="btn btn-info" /></a></td>
         </tr>
         </tbody>
     </table>
