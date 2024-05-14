@@ -7,7 +7,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <title>MeowCafé | Registro de Producto</title>
     <link rel="stylesheet" href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="../../static/js/script.js" th:src="@{/js/script.js}" defer></script>
+    <script src="../../static/js/scriptProductos.js" th:src="@{/js/scriptProductos.js}" defer></script>
     <link rel="stylesheet" href="../../static/css/styles.css" th:href="@{/css/styles.css}">
 
 </head>
@@ -68,17 +68,18 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <form class="w-100" method="post" th:action="@{/admin/formularioProductos/agregar}" th:object="${producto}" name="formularioProducto" id="formularioProducto">
         <div class="m-3 input-group">
             <label for="nombre" class="input-group-text">Nombre:</label>
-            <input type="text" class="form-control" id="nombre" placeholder="Nombre del producto" name="nombre" th:field="*{nombre}">
+            <input type="text" class="form-control" id="nombre" placeholder="Nombre del producto" name="nombre" th:field="*{nombre}" required>
         </div>
 
         <div class="m-3 input-group">
             <label for="precioProducto" class="input-group-text">Precio del producto:</label>
-            <input type="text" class="form-control" id="precioProducto" name="precioProducto" th:field="*{precio}">
+            <input type="text" class="form-control" id="precioProducto" name="precioProducto" th:field="*{precio}" required>
+            <div class="input-group-text text-light"></div>
         </div>
 
         <div class="m-3 input-group">
             <label for="imagen" class="input-group-text">Imagen del producto (URL):</label>
-            <input type="text" class="form-control" id="imagen" placeholder="URL de la imagen del producto" name="imagen" th:field="*{imagen}">
+            <input type="text" class="form-control" id="imagen" placeholder="URL de la imagen del producto" name="imagen" th:field="*{imagen}" required>
         </div>
 
         <div class="m-3 input-group">
@@ -93,8 +94,6 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
             <button type="submit" class="btn btn-primary">Agregar</button>
         </div>
     </form>
-
-    <div class="text-light"></div>
 </div>
 </body>
 </html>

@@ -66,10 +66,33 @@
             <div>
 
                 <a href="#" th:href="@{formularioProductos/{id}(id=${producto.id})}"><input type="button" value="Editar" class="btn btn-info" /></a>
-                <a th:href="@{borrarProducto/{id}(id=${producto.id})}"><input type="button" value="Borrar" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalBorrarGato"/></a>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" th:data-bs-target="'#modalBorrar-' + ${producto.id}">Borrar</button>
             </div>
         </div>
+
+        <div class="modal fade" th:id="'modalBorrar-' + ${producto.id}">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Borrar Producto</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <p>¿Está usted seguro que quiere borrar <span th:text="${producto.nombre}"></span>?
+                            No se podrán deshacer los cambios realizados</p>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-info" data-bs-dismiss="modal">Cancelar</button>
+                        <a th:href="@{/admin/borrarProducto/{id}(id=${producto.id})}"><button type="button" class="btn btn-danger">Borrar</button></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
+
+
 
     <div class="text-center">
 
