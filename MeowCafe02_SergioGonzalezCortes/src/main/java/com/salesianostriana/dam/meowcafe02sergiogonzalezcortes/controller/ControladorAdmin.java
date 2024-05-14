@@ -133,10 +133,7 @@ public class ControladorAdmin {
     @GetMapping("/clientes")
     public String mostrarClientesRegistrados(Model model) {
 
-        model.addAttribute("clientes", servicioUsuario.findAll()
-                .stream()
-                .filter(usuario -> usuario.getTipo().getValor().equals("CLIENTE"))
-                .toList());
+        model.addAttribute("clientes", servicioUsuario.usuarioTipo(TipoUsuario.CLIENTE));
 
 
         return "admin/clientes";
@@ -216,14 +213,8 @@ public class ControladorAdmin {
     public String formularioCombo(Model model) {
 
         model.addAttribute("combo", new Combo());
-        model.addAttribute("bebidas", servicioProducto.findAll()
-                .stream()
-                .filter(producto -> producto.getTipoProducto().getTipo().equals("BEBIDA"))
-                .collect(Collectors.toList()));
-        model.addAttribute("comidas", servicioProducto.findAll()
-                .stream()
-                .filter(producto -> producto.getTipoProducto().getTipo().equals("COMIDA"))
-                .collect(Collectors.toList()));
+        model.addAttribute("bebidas",servicioProducto.productosTipo(TipoProducto.BEBIDA));
+        model.addAttribute("comidas", servicioProducto.productosTipo(TipoProducto.COMIDA));
 
         return "admin/formularioCombos";
     }

@@ -5355,3 +5355,15 @@ insert into producto(id, nombre, precio, tipo_producto, imagen) values(NEXTVAL('
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+2024-05-14 12:31:22.203626+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT *\000d\000aFROM GATO\000d\000aJOIN [*]ON VACUNA"; se esperaba "identifier"
+Syntax error in SQL statement "SELECT *\000d\000aFROM GATO\000d\000aJOIN [*]ON VACUNA"; expected "identifier"; SQL statement:
+SELECT *
+FROM GATO
+JOIN ON VACUNA [42001-224]
+2024-05-14 12:31:49.025513+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT *\000d\000aFROM GATO g\000d\000aJOIN [*]ON VACUNA v WHERE (g.id = v.id)"; se esperaba "identifier"
+Syntax error in SQL statement "SELECT *\000d\000aFROM GATO g\000d\000aJOIN [*]ON VACUNA v WHERE (g.id = v.id)"; expected "identifier"; SQL statement:
+SELECT *
+FROM GATO g
+JOIN ON VACUNA v WHERE (g.id = v.id) [42001-224]

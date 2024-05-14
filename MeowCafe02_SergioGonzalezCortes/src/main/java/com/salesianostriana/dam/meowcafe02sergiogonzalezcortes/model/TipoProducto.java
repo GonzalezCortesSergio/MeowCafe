@@ -5,21 +5,21 @@ public enum TipoProducto {
 	BEBIDA("BEBIDA"),
 	COMIDA("COMIDA");
 	
-	private String tipo;
+	private String valor;
 	
-	private TipoProducto (String tipo) {
+	private TipoProducto (String valor) {
 		
-		this.tipo = tipo;
+		this.valor = valor;
 	}
 	
-	public String getTipo () {
+	public String getValor () {
 		
-		return tipo;
+		return valor;
 	}
 	
-	public void setTipo(String tipo) {
+	public void setTipo(String valor) {
 		
-		this.tipo = tipo;
+		this.valor = valor;
 	}
 	
 }

@@ -15,5 +15,8 @@ import java.util.List;
 @Service
 public class ServicioUsuario extends ServicioBaseImpl<Usuario, Long, RepositorioUsuario>{
 
+    public List<Usuario> usuarioTipo(TipoUsuario tipo) {
 
+        return repository.usuarioTipo(tipo);
+    }
 }
