@@ -3,9 +3,11 @@ package com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.base;
 import java.util.List;
 import java.util.Optional;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+@RequiredArgsConstructor
 public abstract class ServicioBaseImpl <T, ID, R extends JpaRepository<T, ID>> implements ServicioBase<T, ID>{
 
 	@Autowired

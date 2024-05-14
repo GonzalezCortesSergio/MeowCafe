@@ -116,15 +116,12 @@ public class ControladorAdmin {
     }
 
     @GetMapping("/borrarGato/{id}")
-    @ResponseBody
-    public void borrarGato(@PathVariable("id") long id) {
+    public String borrarGato(@PathVariable("id") long id) {
 
-    }
+        if (servicioGato.findById(id).isPresent()) {
 
-    @GetMapping("/borrarGato/confirmarBorrado/{id}")
-    public String confirmarBorrado(@PathVariable("id") long id) {
-
-        servicioGato.deleteById(id);
+            servicioGato.deleteById(id);
+        }
 
         return "redirect:/admin/gatos";
     }
