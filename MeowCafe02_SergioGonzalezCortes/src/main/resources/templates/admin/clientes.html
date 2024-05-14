@@ -6,30 +6,8 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>MeowCafé | Clientes</title>
     <link rel="stylesheet" href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" href="../../static/css/styles.css" th:href="@{/css/styles.css}">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <style type="text/css">
-
-        body {
-
-            background-color: #c57d56;
-        }
-
-        nav{
-
-            background-color: #8d4925;
-        }
-
-        h1 {
-
-            background-color: #7e5950;
-        }
-
-        .dropdown-menu {
-
-            background-color: #c57d56;
-        }
-		
-    </style>
 </head>
 <body>
     <h1 class="display-5 text-center text-light py-5 w-100 m-auto">Clientes</h1>
@@ -55,6 +33,9 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                     <li class="nav-item">
 
                         <a class="nav-link" href="./productos.html" th:href="@{/admin/productos}">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./combos.html" th:href="@{/admin/combos}">Combos</a>
                     </li>
 
                     <li class="nav-item ms-5 ps-5">

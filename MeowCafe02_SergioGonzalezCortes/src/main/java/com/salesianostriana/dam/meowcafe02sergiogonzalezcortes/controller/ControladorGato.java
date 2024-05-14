@@ -18,7 +18,7 @@ public class ControladorGato {
 	@GetMapping("/gatos")
 	public String mostrarGatitos(Model model) {
 		
-		model.addAttribute("gatitos", servicioGato.findAll());
+		model.addAttribute("gatitos", servicioGato.gatosDisponibles());
 		
 		return "gatitos";
 	}
@@ -27,7 +27,7 @@ public class ControladorGato {
 	@GetMapping("/cliente/gatos")
 	public String mostrarGatitosAClientes(Model model) {
 
-		model.addAttribute("gatitos", servicioGato.findAll());
+		model.addAttribute("gatitos", servicioGato.gatosDisponibles());
 
 		return "cliente/gatitos";
 	}
