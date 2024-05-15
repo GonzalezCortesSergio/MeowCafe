@@ -13,7 +13,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <body>
-<h1 class="display-5 text-center text-light py-5 w-100 m-auto">Gatos</h1>
+<h1 class="display-5 text-center text-light py-5 w-100 m-auto">Combos</h1>
 
 <nav class="navbar-expand py-3 mb-5">
 
@@ -30,7 +30,7 @@
                 <a class="nav-link" href="./sobreNosotros.html" th:href="@{/cliente/sobreNosotros}">Sobre nosotros</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./combos.html" th:href="@{/cliente/combos}">Combos</a>
+                <a class="nav-link" href="./gatitos.html" th:href="@{/cliente/gatos}">Gatitos</a>
             </li>
 
             <li class="nav-item ms-5 ps-5">
@@ -55,26 +55,28 @@
 
 <main class="mx-auto row p-5 justify-content-between">
 
-    <div class="card col-12 col-xl-3 my-3 mx-xl-3" th:each="gatito : ${gatitos}" data-aos="flip-left">
-        <img class="card-img-top mx-auto my-3" th:src="${gatito.imagen}" alt="Card image" style="width: 80%; height: 200px;">
-        <div class="card-body">
-            <h4 class="card-title" th:text="${gatito.nombre}">Nombre</h4>
-            <p class="card-text" th:text="'Hora disponible: ' + ${#temporals.format(gatito.horasDisponibles, 'HH:mm')}">Hora disponible</p>
-            <div th:switch="${gatito.ocupado}">
+    <div class="card col-12 col-xl-3 my-3 mx-xl-3" th:each="combo : ${combos}" data-aos="flip-up">
+        <div class="d-flex bg-light">
+            <img class="card-img-top mx-auto my-3" th:each="producto : ${combo.getProducto()}" th:src="${producto.imagen}" alt="Card image" style="width: 40%; height: 100px;">
+        </div>
+            <div class="card-body">
+            <h4 class="card-title" th:text="${combo.nombreCombo}">Nombre</h4>
+            <p class="card-text" th:text="'Precio: ' + ${#numbers.formatDecimal(combo.precioCombo, 1, 2, 'COMMA')} + '€'">Precio combo</p>
+            <div th:switch="${combo.esOferta}">
 
-                <p th:case="true" class="card-text">Ocupado</p>
-                <p th:case="false" class="card-text">Disponible</p>
+                <p th:case="true" class="card-text">El combo se encuentra en oferta</p>
+                <p th:case="false" class="card-text">El combo no se encuentra en oferta</p>
 
             </div>
         </div>
     </div>
 
-    <div class="card col-3 mx-auto" th:if="${gatitos.isEmpty}">
+    <div class="card col-3 mx-auto" th:if="${combos.isEmpty}">
 
-        <img class="card-img-top mx-auto my-3" src="https://img.freepik.com/fotos-premium/gato-alegre-muy-feliz-exotico-sobre-fondo-azul-claro-ia-generativa_864588-4935.jpg" alt="Card image" style="width: 80%; height: 200px;">
+        <img class="card-img-top mx-auto my-3" src="https://ichef.bbci.co.uk/ace/ws/640/amz/worldservice/live/assets/images/2016/05/06/160506121433_ciencia_pedir_perdon_disculpas_eficaz_624x415_thinkstock.jpg" alt="Card image" style="width: 80%; height: 200px;">
         <div class="card-body">
-            <h4 class="card-title">No hay gatitos disponibles</h4>
-            <p class="card-text">Disculpe las molestias, estamos gestionando a los gatitos</p>
+            <h4 class="card-title">No hay combos disponibles</h4>
+            <p class="card-text">Disculpe las molestias, estamos gestionando los combos</p>
         </div>
 
     </div>

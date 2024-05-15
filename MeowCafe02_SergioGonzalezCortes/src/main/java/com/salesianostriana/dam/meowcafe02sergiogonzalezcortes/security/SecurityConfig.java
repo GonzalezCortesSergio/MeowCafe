@@ -60,6 +60,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(
                 auth -> auth.requestMatchers("/css/**", "/js/**", "/img/**", "/h2-console/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/cliente/**").hasRole("CLIENTE")
                         .requestMatchers("/index", "/sobreNosotros", "/login", "/gatos","/formularioRegistro", "/formularioRegistro/registro", "/error").permitAll()
                         .anyRequest().authenticated())
                 .requestCache(cache -> cache.requestCache(requestCache))
@@ -72,9 +73,9 @@ public class SecurityConfig {
                         .logoutSuccessUrl("/index")
                         .permitAll());
 
-        http.csrf(csrfz -> csrfz.disable());
+        http.csrf(AbstractHttpConfigurer::disable);
         http.headers(headersz -> headersz
-                .frameOptions(frameOptionsz -> frameOptionsz.disable()));
+                .frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
 
             return http.build();
     }
