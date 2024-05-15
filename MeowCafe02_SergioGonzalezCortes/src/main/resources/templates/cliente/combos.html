@@ -64,7 +64,7 @@
             <p class="card-text" th:text="'Precio: ' + ${#numbers.formatDecimal(combo.precioCombo, 1, 2, 'COMMA')} + '€'">Precio combo</p>
             <div th:switch="${combo.esOferta}">
 
-                <p th:case="true" class="card-text">El combo se encuentra en oferta</p>
+                <p th:case="true" class="card-text">El combo se encuentra en oferta, puedes incluirlo de forma gratuita a tu reserva</p>
                 <p th:case="false" class="card-text">El combo no se encuentra en oferta</p>
 
             </div>
