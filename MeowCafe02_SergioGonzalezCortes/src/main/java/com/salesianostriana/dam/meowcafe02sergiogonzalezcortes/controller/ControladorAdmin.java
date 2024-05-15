@@ -1,18 +1,19 @@
 package com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.controller;
 
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.*;
+import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.pdf.PdfGenerator;
+import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.security.PasswordGenerator;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioCombo;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioGato;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioProducto;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.stream.Collectors;
+import java.io.IOException;
 
 
 @Controller
@@ -33,6 +34,11 @@ public class ControladorAdmin {
     @Autowired
     private ServicioCombo servicioCombo;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private PdfGenerator pdfGenerator;
 
 
     //Métodos Gatos
@@ -276,6 +282,34 @@ public class ControladorAdmin {
         }
 
         return "redirect:/admin/combos";
+    }
+
+
+    //Registro de nuevo usuario
+
+    @GetMapping("/reserva")
+    public String registraUnNuevoUsuario(Model model) {
+
+        model.addAttribute("usuario", Usuario.builder()
+                .tipo(TipoUsuario.CLIENTE)
+                .build());
+
+        return "admin/clienteNuevoAdmin";
+
+    }
+
+    @PostMapping("/nuevoCliente")
+    @ResponseBody
+    public String guardaElCliente(@ModelAttribute("usuario") Usuario usuario) throws IOException {
+
+        usuario.setPassword(passwordEncoder.encode(PasswordGenerator.getPassword(PasswordGenerator.MINUSCULAS + PasswordGenerator.NUMEROS, 8)));
+
+        servicioUsuario.save(usuario);
+
+        pdfGenerator.generatePdfFromHtml(usuario);
+
+
+        return "Email enviado correctamente";
     }
 
 }
