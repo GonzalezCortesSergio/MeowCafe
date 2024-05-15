@@ -186,7 +186,7 @@ public class ControladorAdmin {
         return "redirect:/admin/productos";
     }
 
-    @GetMapping("borrarProducto/{id}")
+    @GetMapping("/borrarProducto/{id}")
     public String borrarProducto(@PathVariable("id") long id) {
 
         if(servicioProducto.findById(id).isPresent()) {
@@ -258,6 +258,23 @@ public class ControladorAdmin {
 
             servicioCombo.edit(combo);
         }
+        return "redirect:/admin/combos";
+    }
+
+
+    @GetMapping("/borrarCombo/{id}")
+    public String borrarCombo(@PathVariable("id") Long id) {
+
+        if (servicioCombo.findById(id).isPresent()) {
+            Combo aEliminar = servicioCombo.findById(id).get();
+            for (Producto producto: aEliminar.getProducto()) {
+
+                servicioCombo.deleteProducto(aEliminar, producto);
+            }
+
+            servicioCombo.delete(aEliminar);
+        }
+
         return "redirect:/admin/combos";
     }
 
