@@ -43,12 +43,4 @@ public class Combo {
 
 
 
-	//HELPER
-	public void addProducto(Producto producto) {
-
-		this.getProducto().add(producto);
-
-		producto.getCombo().add(this);
-	}
-
 } 

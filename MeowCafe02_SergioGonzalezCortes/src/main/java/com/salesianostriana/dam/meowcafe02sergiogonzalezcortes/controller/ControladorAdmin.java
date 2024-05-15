@@ -108,8 +108,8 @@ public class ControladorAdmin {
     @PostMapping("/vacunas/ponerVacuna")
     public String ponerVacuna (@ModelAttribute("gato") Gato gato, @ModelAttribute("vacuna") Vacuna vacuna) {
 
-        gato.addVacuna(vacuna);
-        servicioGato.cambiarDisponibilidad(gato);
+        servicioGato.addVacuna(vacuna, gato);
+        
         servicioGato.edit(gato);
 
         return "redirect:/admin/gatos";
@@ -221,13 +221,9 @@ public class ControladorAdmin {
     public String agregarCombo(@ModelAttribute("combo")Combo combo, @RequestParam("productoId") Long productoId, @RequestParam("productoId-2") Long segundoProductoId) {
         if(servicioProducto.findById(productoId).isPresent() && servicioProducto.findById(segundoProductoId).isPresent()) {
 
-            combo.addProducto(servicioProducto.findById(productoId).get());
-            servicioProducto.edit(servicioProducto.findById(productoId).get());
+            servicioCombo.addProducto(combo, servicioProducto.findById(productoId).get());
 
-            combo.addProducto(servicioProducto.findById(segundoProductoId).get());
-            servicioProducto.edit(servicioProducto.findById(segundoProductoId).get());
-
-            servicioCombo.obtenerPrecioCombo(combo);
+            servicioCombo.addProducto(combo, servicioProducto.findById(segundoProductoId).get());
 
             servicioCombo.save(combo);
         }
@@ -257,13 +253,8 @@ public class ControladorAdmin {
 
         if(servicioProducto.findById(productoId).isPresent() && servicioProducto.findById(segundoProductoId).isPresent()) {
 
-            combo.addProducto(servicioProducto.findById(productoId).get());
-            servicioProducto.edit(servicioProducto.findById(productoId).get());
-
-            combo.addProducto(servicioProducto.findById(segundoProductoId).get());
-            servicioProducto.edit(servicioProducto.findById(segundoProductoId).get());
-
-            servicioCombo.obtenerPrecioCombo(combo);
+            servicioCombo.addProducto(combo, servicioProducto.findById(productoId).get());
+            servicioCombo.addProducto(combo, servicioProducto.findById(segundoProductoId).get());
 
             servicioCombo.edit(combo);
         }

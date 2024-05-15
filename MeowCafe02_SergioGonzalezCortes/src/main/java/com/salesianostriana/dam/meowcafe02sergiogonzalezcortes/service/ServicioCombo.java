@@ -12,7 +12,21 @@ import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.base.Serv
 @Service
 public class ServicioCombo extends ServicioBaseImpl<Combo, Long, RepositorioCombo>{
 
-    public void obtenerPrecioCombo(Combo combo) {
+    @Autowired
+    private ServicioProducto servicioProducto;
+
+
+    public void addProducto(Combo combo, Producto producto) {
+
+        combo.getProducto().add(producto);
+        producto.getCombo().add(combo);
+        obtenerPrecioCombo(combo);
+
+        servicioProducto.edit(producto);
+    }
+
+
+    private void obtenerPrecioCombo(Combo combo) {
 
         combo.setPrecioCombo(combo.getProducto().stream()
                 .mapToDouble(Producto::getPrecio)
