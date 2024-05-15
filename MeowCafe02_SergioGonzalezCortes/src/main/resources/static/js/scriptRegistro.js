@@ -36,7 +36,7 @@ function comprobarCamposRellenados() {
 
 	if (!todosOk) {
 
-		let mensajeError = formularioGato.nextElementSibling;
+		let mensajeError = formularioRegistro.nextElementSibling;
 
 		mensajeError.classList.add("bg-danger");
 
@@ -44,6 +44,19 @@ function comprobarCamposRellenados() {
 
 		datosErroneos = true;
 	}
+}
+
+function comprobarContrasenas() {
+
+    let contrasena = formularioRegistro.elements.contrasena;
+    let repetirContrasena = formularioRegistro.elements.repetirContrasena;
+
+    if (contrasena.value !== repetirContrasena.value) {
+
+        datosErroneos = true;
+
+
+    }
 }
 
 
