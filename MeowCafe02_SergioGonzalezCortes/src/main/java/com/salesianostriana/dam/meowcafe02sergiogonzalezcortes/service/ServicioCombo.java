@@ -25,6 +25,14 @@ public class ServicioCombo extends ServicioBaseImpl<Combo, Long, RepositorioComb
         servicioProducto.edit(producto);
     }
 
+    public void deleteProducto(Combo combo, Producto producto) {
+
+        combo.getProducto().remove(producto);
+        producto.getCombo().remove(combo);
+
+        servicioProducto.edit(producto);
+    }
+
 
     private void obtenerPrecioCombo(Combo combo) {
 
