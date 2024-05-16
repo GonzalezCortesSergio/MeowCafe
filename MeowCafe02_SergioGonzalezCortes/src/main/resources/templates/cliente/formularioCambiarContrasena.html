@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,33 +20,42 @@
     <div class="container-fluid">
         <div class="collapse navbar-collapse d-flex justify-content-between" style="list-style-type: none;" id="mynavbar">
             <li class="nav-item">
-                <button class="btn btn-outline-primary border-0" type="button" data-bs-toggle="" data-bs-target="" style="background-color: #c57d56;">RESERVA</button>
+                <button class="btn btn-outline-dark border-0" type="button" data-bs-toggle="" data-bs-target="" style="background-color: #c57d56;">RESERVA</button>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="./index.html" th:href="@{/}" >Inicio</a>
+                <a class="nav-link" href="./index.html" th:href="@{/cliente/index}">Inicio</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="./sobreNosotros.html" th:href="@{/sobreNosotros}" >Sobre nosotros</a>
+                <a class="nav-link" href="./sobreNosotros.html" th:href="@{/cliente/sobreNosotros}">Sobre nosotros</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./gatitos.html" th:href="@{/gatos}">Gatitos</a>
+                <a class="nav-link" href="./gatitos.html" th:href="@{/cliente/gatos}">Gatitos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./combos.html" th:href="@{/cliente/combos}">Combos</a>
             </li>
 
-            <ul class="dropdown-menu">
+            <li class="nav-item ms-5 ps-5">
+                <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">
+                    <span sec:authentication="name">Usuario</span>
+                </button>
 
-                <li class="text-center mb-3">
+                <ul class="dropdown-menu">
 
-                    <a href="./informacionUsuario.html" th:href="@{/cliente/usuario}" class="btn btn-warning">Cuenta</a>
-                </li>
+                    <li class="text-center mb-3">
 
-                <li class="text-center mt-3">
-                    <form class="w-50 mx-auto" th:action="@{/logout}" name="formularioLogout" id="formularioLogout" method="post">
-                        <a href="javascript:document.getElementById('formularioLogout').submit()" class="btn btn-danger">Salir</a>
-                    </form>
-                </li>
-            </ul>
+                        <a href="./informacionUsuario.html" th:href="@{/cliente/usuario}" class="btn btn-warning">Cuenta</a>
+                    </li>
+
+                    <li class="text-center mt-3">
+                        <form class="w-50 mx-auto" th:action="@{/logout}" name="formularioLogout" id="formularioLogout" method="post">
+                            <a href="javascript:document.getElementById('formularioLogout').submit()" class="btn btn-danger">Salir</a>
+                        </form>
+                    </li>
+                </ul>
+            </li>
         </div>
     </div>
 </nav>
