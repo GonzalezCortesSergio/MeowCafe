@@ -153,6 +153,29 @@ public class ControladorAdmin {
         return "admin/clientes";
     }
 
+    @GetMapping("/cambiarPremium/{id}")
+    public String cambiarPremium(@PathVariable("id") long id, Model model) {
+
+        if(servicioUsuario.findById(id).isPresent()) {
+
+            Usuario usuario = servicioUsuario.findById(id).get();
+
+            model.addAttribute("usuario", usuario);
+
+            return "admin/formularioCambiarPremiumCliente";
+        }
+
+        return "redirect:/admin/clientes";
+    }
+
+    @PostMapping("/cambiarPremium/submit")
+    public String clienteCambiado(@ModelAttribute("usuario") Usuario usuario) {
+
+        servicioUsuario.edit(usuario);
+
+        return "redirect:/admin/clientes";
+    }
+
 
     //Métodos productos
 
@@ -335,5 +358,7 @@ public class ControladorAdmin {
         return "admin/pdfUsuario";
 
     }
+
+
 
 }
