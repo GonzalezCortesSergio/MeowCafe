@@ -1,18 +1,24 @@
 package com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.controller;
 
+import com.lowagie.text.*;
+import com.lowagie.text.Font;
+import com.lowagie.text.pdf.PdfWriter;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.*;
+import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.pdf.PdfGenerator;
+import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.security.PasswordGenerator;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioCombo;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioGato;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioProducto;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.stream.Collectors;
+import java.awt.*;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 
 @Controller
@@ -33,6 +39,11 @@ public class ControladorAdmin {
     @Autowired
     private ServicioCombo servicioCombo;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private PdfGenerator pdfGenerator;
 
 
     //Métodos Gatos
@@ -276,6 +287,37 @@ public class ControladorAdmin {
         }
 
         return "redirect:/admin/combos";
+    }
+
+
+    //Registro de nuevo usuario
+
+    @GetMapping("/reserva")
+    public String registraUnNuevoUsuario(Model model) {
+
+        model.addAttribute("usuario", new Usuario());
+
+        return "admin/clienteNuevoAdmin";
+
+    }
+
+    @PostMapping("/nuevoCliente")
+    public String guardaElCliente(@ModelAttribute("usuario") Usuario usuario) throws FileNotFoundException {
+
+        String contrasenaGenerada = PasswordGenerator.getPassword(PasswordGenerator.MINUSCULAS + PasswordGenerator.NUMEROS, 8);
+
+        pdfGenerator.generarPdf(usuario, contrasenaGenerada);
+
+        usuario.setPassword(servicioUsuario.codificarContrasena(contrasenaGenerada));
+
+        usuario.setTipo(TipoUsuario.CLIENTE);
+
+        servicioUsuario.save(usuario);
+
+
+
+
+        return "admin/mensajeConfirmacionPdf";
     }
 
 }
