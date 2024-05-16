@@ -25,9 +25,7 @@ public class ControladorUsuario {
 	@GetMapping("/formularioRegistro")
 	public String formularioRegistroUsuario (Model model) {
 
-		model.addAttribute("usuario", Usuario.builder()
-				.tipo(TipoUsuario.CLIENTE)
-				.build());
+		model.addAttribute("usuario", new Usuario());
 
 
 		return "formularioRegistro";
@@ -37,6 +35,7 @@ public class ControladorUsuario {
 	@PostMapping("/formularioRegistro/registro")
 	public String registroUsuario(@ModelAttribute("usuario") Usuario usuario) {
 
+		usuario.setTipo(TipoUsuario.CLIENTE);
 		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
 
 		servicioUsuario.save(usuario);

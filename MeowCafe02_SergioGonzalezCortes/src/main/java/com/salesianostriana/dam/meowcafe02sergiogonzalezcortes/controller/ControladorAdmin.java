@@ -1,8 +1,6 @@
 package com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.controller;
 
-import com.lowagie.text.*;
-import com.lowagie.text.Font;
-import com.lowagie.text.pdf.PdfWriter;
+import com.itextpdf.text.DocumentException;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.*;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.pdf.PdfGenerator;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.security.PasswordGenerator;
@@ -11,6 +9,8 @@ import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioG
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioProducto;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 
 @Controller
@@ -44,6 +45,9 @@ public class ControladorAdmin {
 
     @Autowired
     private PdfGenerator pdfGenerator;
+
+    @Autowired
+    private ResourceLoader resourceLoader;
 
 
     //Métodos Gatos
@@ -312,11 +316,9 @@ public class ControladorAdmin {
     }
 
     @PostMapping("/nuevoCliente")
-    public void guardaElCliente(@ModelAttribute("usuario") Usuario usuario) throws FileNotFoundException {
+    public String guardaElCliente(@ModelAttribute("usuario") Usuario usuario, Model model) throws IOException, DocumentException {
 
         String contrasenaGenerada = PasswordGenerator.getPassword(PasswordGenerator.MINUSCULAS + PasswordGenerator.NUMEROS, 8);
-
-        pdfGenerator.generarPdf(usuario, contrasenaGenerada);
 
         usuario.setPassword(servicioUsuario.codificarContrasena(contrasenaGenerada));
 
@@ -325,8 +327,12 @@ public class ControladorAdmin {
         servicioUsuario.save(usuario);
 
 
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("password", contrasenaGenerada);
 
 
+
+        return "admin/pdfUsuario";
 
     }
 
