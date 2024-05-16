@@ -32,5 +32,6 @@ public class PdfGenerator {
         document.add(new Paragraph("Su contraseña es: " + contrasenaGenerada + ", deberá cambiarla una vez que inicie sesión", font));
 
         document.close();
+
     }
 }

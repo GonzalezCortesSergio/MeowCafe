@@ -19,15 +19,9 @@ public class ServicioGato extends ServicioBaseImpl<Gato, Long, RepositorioGato>{
         return repository.gatosDisponibles();
     }
 
-    public void addVacuna(Vacuna v, Gato g) {
 
-        v.setGato(g);
-        g.getVacunas().add(v);
 
-        cambiarDisponibilidad(g);
-    }
-
-    private void cambiarDisponibilidad(Gato g) {
+    public void cambiarDisponibilidad(Gato g) {
 
         LocalDate fechaActual = LocalDate.now();
 

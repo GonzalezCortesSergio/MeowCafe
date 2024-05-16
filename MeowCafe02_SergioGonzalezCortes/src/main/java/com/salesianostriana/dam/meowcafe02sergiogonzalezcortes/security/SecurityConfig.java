@@ -61,7 +61,7 @@ public class SecurityConfig {
                 auth -> auth.requestMatchers("/css/**", "/js/**", "/img/**", "/h2-console/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/cliente/**").hasRole("CLIENTE")
-                        .requestMatchers("/index", "/sobreNosotros", "/login", "/gatos","/formularioRegistro", "/formularioRegistro/registro", "/error").permitAll()
+                        .requestMatchers("/", "/sobreNosotros", "/login", "/gatos","/formularioRegistro", "/formularioRegistro/registro", "/error").permitAll()
                         .anyRequest().authenticated())
                 .requestCache(cache -> cache.requestCache(requestCache))
                 .formLogin(loginz -> loginz
@@ -70,7 +70,7 @@ public class SecurityConfig {
                         .permitAll())
                 .logout(logoutz -> logoutz
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/index")
+                        .logoutSuccessUrl("/")
                         .permitAll());
 
         http.csrf(AbstractHttpConfigurer::disable);

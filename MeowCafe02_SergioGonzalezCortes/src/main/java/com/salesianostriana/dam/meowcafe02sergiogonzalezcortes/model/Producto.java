@@ -31,4 +31,16 @@ public class Producto {
 	private List<Combo> combo = new ArrayList<Combo>();
 
 
+	public void addToCombo(Combo c) {
+
+		this.getCombo().add(c);
+		c.getProducto().add(this);
+	}
+
+	public void removeFromCombo(Combo c) {
+
+		this.getCombo().remove(c);
+		c.getProducto().remove(this);
+	}
+
 }

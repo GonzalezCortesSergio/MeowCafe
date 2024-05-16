@@ -119,7 +119,8 @@ public class ControladorAdmin {
     @PostMapping("/vacunas/ponerVacuna")
     public String ponerVacuna (@ModelAttribute("gato") Gato gato, @ModelAttribute("vacuna") Vacuna vacuna) {
 
-        servicioGato.addVacuna(vacuna, gato);
+        gato.addVacuna(vacuna);
+        servicioGato.cambiarDisponibilidad(gato);
         
         servicioGato.edit(gato);
 
@@ -232,9 +233,13 @@ public class ControladorAdmin {
     public String agregarCombo(@ModelAttribute("combo")Combo combo, @RequestParam("productoId") Long productoId, @RequestParam("productoId-2") Long segundoProductoId) {
         if(servicioProducto.findById(productoId).isPresent() && servicioProducto.findById(segundoProductoId).isPresent()) {
 
-            servicioCombo.addProducto(combo, servicioProducto.findById(productoId).get());
+            Producto bebida = servicioProducto.findById(productoId).get();
+            Producto comida = servicioProducto.findById(segundoProductoId).get();
 
-            servicioCombo.addProducto(combo, servicioProducto.findById(segundoProductoId).get());
+            bebida.addToCombo(combo);
+            comida.addToCombo(combo);
+
+            servicioCombo.obtenerPrecioCombo(combo);
 
             servicioCombo.save(combo);
         }
@@ -264,8 +269,13 @@ public class ControladorAdmin {
 
         if(servicioProducto.findById(productoId).isPresent() && servicioProducto.findById(segundoProductoId).isPresent()) {
 
-            servicioCombo.addProducto(combo, servicioProducto.findById(productoId).get());
-            servicioCombo.addProducto(combo, servicioProducto.findById(segundoProductoId).get());
+            Producto bebida = servicioProducto.findById(productoId).get();
+            Producto comida = servicioProducto.findById(segundoProductoId).get();
+
+            bebida.addToCombo(combo);
+            comida.addToCombo(combo);
+
+            servicioCombo.obtenerPrecioCombo(combo);
 
             servicioCombo.edit(combo);
         }
@@ -280,7 +290,7 @@ public class ControladorAdmin {
             Combo aEliminar = servicioCombo.findById(id).get();
             for (Producto producto: aEliminar.getProducto()) {
 
-                servicioCombo.deleteProducto(aEliminar, producto);
+                producto.removeFromCombo(aEliminar);
             }
 
             servicioCombo.delete(aEliminar);
@@ -302,7 +312,7 @@ public class ControladorAdmin {
     }
 
     @PostMapping("/nuevoCliente")
-    public String guardaElCliente(@ModelAttribute("usuario") Usuario usuario) throws FileNotFoundException {
+    public void guardaElCliente(@ModelAttribute("usuario") Usuario usuario) throws FileNotFoundException {
 
         String contrasenaGenerada = PasswordGenerator.getPassword(PasswordGenerator.MINUSCULAS + PasswordGenerator.NUMEROS, 8);
 
@@ -317,7 +327,7 @@ public class ControladorAdmin {
 
 
 
-        return "admin/mensajeConfirmacionPdf";
+
     }
 
 }
