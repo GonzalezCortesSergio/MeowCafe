@@ -1,5 +1,10 @@
 package com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.pdf;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.Font;
+import com.lowagie.text.FontFactory;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.PdfWriter;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.Usuario;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
@@ -9,41 +14,23 @@ import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
+import java.awt.*;
 import java.io.*;
 
 @Service
 public class PdfGenerator {
 
-    private String parseThymeleafTemplate(Usuario usuario) {
+    public void generarPdf(Usuario usuario, String contrasenaGenerada) throws FileNotFoundException {
 
-        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+        Document document = new Document();
+        PdfWriter.getInstance(document, new FileOutputStream("Información_del_Usuario.pdf"));
 
-        templateResolver.setSuffix(".html");
-        templateResolver.setTemplateMode(TemplateMode.HTML);
+        document.open();
+        Font font = FontFactory.getFont(FontFactory.COURIER, 16, Color.BLACK);
 
-        TemplateEngine templateEngine = new TemplateEngine();
-        templateEngine.setTemplateResolver(templateResolver);
+        document.add(new Paragraph("Bienvenido " + usuario.getNombre() + ", su nombre de usuario es " + usuario.getUsername(), font));
+        document.add(new Paragraph("Su contraseña es: " + contrasenaGenerada + ", deberá cambiarla una vez que inicie sesión", font));
 
-        Context context = new Context();
-        context.setVariable("username", usuario.getUsername());
-        context.setVariable("password", usuario.getPassword());
-
-        return templateEngine.process("Enviar", context);
-    }
-
-
-    public void generatePdfFromHtml(Usuario usuario) throws IOException {
-
-        String outputFolder = System.getProperty("user.dir") + File.separator + "thymeleaf.pdf";
-
-
-        OutputStream outputStream = new FileOutputStream(outputFolder);
-
-        ITextRenderer renderer = new ITextRenderer();
-        renderer.setDocumentFromString(parseThymeleafTemplate(usuario));
-        renderer.layout();
-        renderer.createPDF(outputStream);
-
-        outputStream.close();
+        document.close();
     }
 }

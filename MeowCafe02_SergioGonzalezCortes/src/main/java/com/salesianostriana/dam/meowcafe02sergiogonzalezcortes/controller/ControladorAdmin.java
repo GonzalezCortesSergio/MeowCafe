@@ -1,5 +1,8 @@
 package com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.controller;
 
+import com.lowagie.text.*;
+import com.lowagie.text.Font;
+import com.lowagie.text.pdf.PdfWriter;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.*;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.pdf.PdfGenerator;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.security.PasswordGenerator;
@@ -13,7 +16,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
+import java.awt.*;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 
 @Controller
@@ -290,26 +295,29 @@ public class ControladorAdmin {
     @GetMapping("/reserva")
     public String registraUnNuevoUsuario(Model model) {
 
-        model.addAttribute("usuario", Usuario.builder()
-                .tipo(TipoUsuario.CLIENTE)
-                .build());
+        model.addAttribute("usuario", new Usuario());
 
         return "admin/clienteNuevoAdmin";
 
     }
 
     @PostMapping("/nuevoCliente")
-    @ResponseBody
-    public String guardaElCliente(@ModelAttribute("usuario") Usuario usuario) throws IOException {
+    public String guardaElCliente(@ModelAttribute("usuario") Usuario usuario) throws FileNotFoundException {
 
-        usuario.setPassword(passwordEncoder.encode(PasswordGenerator.getPassword(PasswordGenerator.MINUSCULAS + PasswordGenerator.NUMEROS, 8)));
+        String contrasenaGenerada = PasswordGenerator.getPassword(PasswordGenerator.MINUSCULAS + PasswordGenerator.NUMEROS, 8);
+
+        pdfGenerator.generarPdf(usuario, contrasenaGenerada);
+
+        usuario.setPassword(servicioUsuario.codificarContrasena(contrasenaGenerada));
+
+        usuario.setTipo(TipoUsuario.CLIENTE);
 
         servicioUsuario.save(usuario);
 
-        pdfGenerator.generatePdfFromHtml(usuario);
 
 
-        return "Email enviado correctamente";
+
+        return "admin/mensajeConfirmacionPdf";
     }
 
 }
