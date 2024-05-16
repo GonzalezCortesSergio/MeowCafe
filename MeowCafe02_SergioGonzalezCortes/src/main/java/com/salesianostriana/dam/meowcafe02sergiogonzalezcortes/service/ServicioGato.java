@@ -27,15 +27,7 @@ public class ServicioGato extends ServicioBaseImpl<Gato, Long, RepositorioGato>{
 
         LocalDate fechaUltimaVacuna = g.getVacunas().get(g.getVacunas().size() - 1).getFechaVacuna();
 
-        if (fechaUltimaVacuna.isBefore(fechaActual.minusYears(1))) {
-
-            g.setOcupado(true);
-        }
-
-        else {
-
-            g.setOcupado(false);
-        }
+        g.setOcupado(fechaUltimaVacuna != null && fechaUltimaVacuna.isBefore(fechaActual.minusYears(1)));
 
 
     }

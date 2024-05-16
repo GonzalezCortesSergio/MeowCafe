@@ -5367,3 +5367,33 @@ Syntax error in SQL statement "SELECT *\000d\000aFROM GATO g\000d\000aJOIN [*]ON
 SELECT *
 FROM GATO g
 JOIN ON VACUNA v WHERE (g.id = v.id) [42001-224]
+2024-05-16 22:59:03.935153+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM GATO \000d\000aJOIN [*]ON VACUNA(GATO.ID = VACUNA.ID)"; se esperaba "identifier"
+Syntax error in SQL statement "SELECT * FROM GATO \000d\000aJOIN [*]ON VACUNA(GATO.ID = VACUNA.ID)"; expected "identifier"; SQL statement:
+SELECT * FROM GATO 
+JOIN ON VACUNA(GATO.ID = VACUNA.ID) [42001-224]
+2024-05-16 22:59:56.248281+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM GATO \000d\000aJOIN [*]ON VACUNA(GATO.ID = VACUNA.GATO_ID)"; se esperaba "identifier"
+Syntax error in SQL statement "SELECT * FROM GATO \000d\000aJOIN [*]ON VACUNA(GATO.ID = VACUNA.GATO_ID)"; expected "identifier"; SQL statement:
+SELECT * FROM GATO 
+JOIN ON VACUNA(GATO.ID = VACUNA.GATO_ID) [42001-224]
+2024-05-16 22:59:56.957499+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM GATO \000d\000aJOIN [*]ON VACUNA(GATO.ID = VACUNA.GATO_ID)"; se esperaba "identifier"
+Syntax error in SQL statement "SELECT * FROM GATO \000d\000aJOIN [*]ON VACUNA(GATO.ID = VACUNA.GATO_ID)"; expected "identifier"; SQL statement:
+SELECT * FROM GATO 
+JOIN ON VACUNA(GATO.ID = VACUNA.GATO_ID) [42001-224]
+2024-05-16 22:59:57.142002+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM GATO \000d\000aJOIN [*]ON VACUNA(GATO.ID = VACUNA.GATO_ID)"; se esperaba "identifier"
+Syntax error in SQL statement "SELECT * FROM GATO \000d\000aJOIN [*]ON VACUNA(GATO.ID = VACUNA.GATO_ID)"; expected "identifier"; SQL statement:
+SELECT * FROM GATO 
+JOIN ON VACUNA(GATO.ID = VACUNA.GATO_ID) [42001-224]
+2024-05-16 22:59:57.415984+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM GATO \000d\000aJOIN [*]ON VACUNA(GATO.ID = VACUNA.GATO_ID)"; se esperaba "identifier"
+Syntax error in SQL statement "SELECT * FROM GATO \000d\000aJOIN [*]ON VACUNA(GATO.ID = VACUNA.GATO_ID)"; expected "identifier"; SQL statement:
+SELECT * FROM GATO 
+JOIN ON VACUNA(GATO.ID = VACUNA.GATO_ID) [42001-224]
+2024-05-16 22:59:57.669871+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM GATO \000d\000aJOIN [*]ON VACUNA(GATO.ID = VACUNA.GATO_ID)"; se esperaba "identifier"
+Syntax error in SQL statement "SELECT * FROM GATO \000d\000aJOIN [*]ON VACUNA(GATO.ID = VACUNA.GATO_ID)"; expected "identifier"; SQL statement:
+SELECT * FROM GATO 
+JOIN ON VACUNA(GATO.ID = VACUNA.GATO_ID) [42001-224]
