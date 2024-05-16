@@ -1,3 +1,3 @@
 # MeowCafe
 
-![alt text](./diagrama\Diagrama de clases del diseño.jpg)
+diagrama/Diagrama de clases del diseño.jpg
