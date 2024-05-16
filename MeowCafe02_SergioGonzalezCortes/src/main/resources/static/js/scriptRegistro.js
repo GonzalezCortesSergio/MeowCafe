@@ -55,7 +55,11 @@ function comprobarContrasenas() {
 
         datosErroneos = true;
 
+        let mensajeError = repetirContrasena.nextElementSibling.nextElementSibling;
 
+        mensajeError.classList.add("bg-danger");
+
+        mensajeError.innerHTML = "Las contraseñas no coinciden"
     }
 }
 
@@ -67,6 +71,7 @@ function comprobarFormulario (evento) {
 	datosErroneos = false;
 
 	comprobarCamposRellenados();
+	comprobarContrasenas();
 
 	if (!datosErroneos) {
 

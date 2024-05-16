@@ -3,6 +3,7 @@ package com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.controller;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.TipoUsuario;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,6 +41,35 @@ public class ControladorUsuario {
 
 		servicioUsuario.save(usuario);
 		return "redirect:/";
+	}
+
+
+	@GetMapping("/cliente/usuario")
+	public String informacionUsuario(@AuthenticationPrincipal Usuario usuario, Model model) {
+
+		model.addAttribute("usuario", usuario);
+
+		return "cliente/informacionUsuario";
+	}
+
+
+	@GetMapping("/cliente/cambiarContrasena")
+	public String cambiarContrasena(@AuthenticationPrincipal Usuario usuario, Model model) {
+
+		model.addAttribute("usuario", usuario);
+
+		return "cliente/formularioCambiarContrasena";
+	}
+
+
+	@PostMapping("/cliente/cambiarContrasena/submbit")
+	public String cambiarContrasenaSubmit(@ModelAttribute("usuario") Usuario usuario) {
+
+		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+
+		servicioUsuario.edit(usuario);
+
+		return "redirect:/cliente/usuario";
 	}
 
 }
