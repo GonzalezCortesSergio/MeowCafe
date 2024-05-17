@@ -42,10 +42,6 @@ public class Combo {
 	private List<Producto> producto = new ArrayList<Producto>();
 
 
-	@ToString.Exclude
-	@EqualsAndHashCode.Exclude
-	@OneToMany(mappedBy = "combo", fetch = FetchType.EAGER)
-	@Builder.Default
-	private List<LineaReserva> lineasReserva = new ArrayList<>();
+
 
 } 

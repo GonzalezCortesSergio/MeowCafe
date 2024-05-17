@@ -33,6 +33,8 @@ public class Gato {
 	private List<Vacuna> vacunas = new ArrayList<>();
 
 
+
+
 	public void addVacuna(Vacuna v) {
 
 		v.setGato(this);
