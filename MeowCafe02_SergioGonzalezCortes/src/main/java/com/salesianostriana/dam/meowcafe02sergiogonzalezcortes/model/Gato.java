@@ -33,6 +33,11 @@ public class Gato {
 	private List<Vacuna> vacunas = new ArrayList<>();
 
 
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
+	@Builder.Default
+	@ManyToMany(mappedBy = "gatosReservados")
+	private List<Reserva> reservas = new ArrayList<>();
 
 
 	public void addVacuna(Vacuna v) {
@@ -40,5 +45,18 @@ public class Gato {
 		v.setGato(this);
 		this.vacunas.add(v);
 
+	}
+
+
+	public void addToReserva(Reserva r) {
+
+		this.reservas.add(r);
+		r.getGatosReservados().add(this);
+	}
+
+	public void removeFromReserva(Reserva r) {
+
+		r.getGatosReservados().remove(this);
+		this.reservas.remove(r);
 	}
 }

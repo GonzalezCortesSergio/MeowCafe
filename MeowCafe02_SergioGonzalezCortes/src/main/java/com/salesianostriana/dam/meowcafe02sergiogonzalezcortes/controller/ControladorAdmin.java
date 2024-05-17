@@ -315,10 +315,11 @@ public class ControladorAdmin {
 
         if (servicioCombo.findById(id).isPresent()) {
             Combo aEliminar = servicioCombo.findById(id).get();
-            for (Producto producto: aEliminar.getProducto()) {
+            if (!aEliminar.getProducto().isEmpty())
+                for (int i = aEliminar.getProducto().size() - 1; i > 0; i--) {
 
-                producto.removeFromCombo(aEliminar);
-            }
+                    aEliminar.getProducto().get(i);
+                }
 
             servicioCombo.delete(aEliminar);
         }
