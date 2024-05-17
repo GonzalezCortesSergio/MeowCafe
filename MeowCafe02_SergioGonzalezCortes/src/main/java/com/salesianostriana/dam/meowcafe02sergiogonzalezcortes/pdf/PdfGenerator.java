@@ -7,10 +7,7 @@ import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.Usuario;
 import org.springframework.stereotype.Service;
 
 
-import java.awt.*;
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 @Service
 public class PdfGenerator {
@@ -22,7 +19,7 @@ public class PdfGenerator {
            Document document = new Document();
 
 
-           Font font = FontFactory.getFont(FontFactory.COURIER, 16, Font.BOLD);
+           Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
 
            PdfWriter.getInstance(document, bos);
            document.open();

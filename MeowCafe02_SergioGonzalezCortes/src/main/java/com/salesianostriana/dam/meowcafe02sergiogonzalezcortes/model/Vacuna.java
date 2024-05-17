@@ -25,6 +25,7 @@ public class Vacuna {
 
 
     @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_vacuna_gato"))
     private Gato gato;
 
 }
