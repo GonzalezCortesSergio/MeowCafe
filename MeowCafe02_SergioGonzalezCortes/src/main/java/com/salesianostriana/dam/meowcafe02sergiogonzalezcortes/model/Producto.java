@@ -30,7 +30,7 @@ public class Producto {
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	@Builder.Default
-	@ManyToMany(mappedBy = "producto",fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "productos",fetch = FetchType.EAGER)
 
 	private List<Combo> combo = new ArrayList<Combo>();
 
@@ -48,14 +48,14 @@ public class Producto {
 	public void addToCombo(Combo combo) {
 
 		this.combo.add(combo);
-		combo.getProducto().add(this);
+		combo.getProductos().add(this);
 	}
 
 
 	public void removeFromCombo(Combo combo) {
 
 		this.combo.remove(combo);
-		combo.getProducto().remove(this);
+		combo.getProductos().remove(this);
 
 
 	}

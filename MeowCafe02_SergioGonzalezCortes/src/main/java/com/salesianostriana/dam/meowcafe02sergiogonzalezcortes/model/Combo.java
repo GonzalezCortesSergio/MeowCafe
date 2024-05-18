@@ -19,8 +19,6 @@ public class Combo extends Producto{
 
 	
 	private boolean esOferta;
-
-	private List<String> imagenCombo;
 	
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
@@ -31,7 +29,7 @@ public class Combo extends Producto{
 			joinColumns = @JoinColumn(name = "combo_id"),
 			inverseJoinColumns = @JoinColumn(name = "producto_id")
 	)
-	private List<Producto> producto = new ArrayList<Producto>();
+	private List<Producto> productos = new ArrayList<Producto>();
 
 
 

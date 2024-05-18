@@ -87,7 +87,7 @@
                 <span th:case="true">Se encuentra en ofertas</span>
                 <span th:case="false">No se encuentra en ofertas</span>
             </td>
-            <td><div th:each="producto : ${combo.producto}">
+            <td><div th:each="producto : ${combo.productos}">
                 <span th:text="${producto.nombre}">Nombre de los productos</span>
             </div></td>
             <td><a href="#" th:href="@{/admin/formularioCombo/{id}(id=${combo.id})}"><input type="button" value="Editar" class="btn btn-info" /></a></td>

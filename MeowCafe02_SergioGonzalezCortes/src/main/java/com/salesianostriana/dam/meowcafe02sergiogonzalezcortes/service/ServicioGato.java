@@ -23,11 +23,13 @@ public class ServicioGato extends ServicioBaseImpl<Gato, Long, RepositorioGato>{
 
     public void cambiarDisponibilidad(Gato g) {
 
-        LocalDate fechaActual = LocalDate.now();
+        if (!g.getVacunas().isEmpty()) {
+            LocalDate fechaActual = LocalDate.now();
 
-        LocalDate fechaUltimaVacuna = g.getVacunas().get(g.getVacunas().size() - 1).getFechaVacuna();
+            LocalDate fechaUltimaVacuna = g.getVacunas().get(g.getVacunas().size() - 1).getFechaVacuna();
 
-        g.setOcupado(fechaUltimaVacuna != null && fechaUltimaVacuna.isBefore(fechaActual.minusYears(1)));
+            g.setOcupado(fechaUltimaVacuna != null && fechaUltimaVacuna.isBefore(fechaActual.minusYears(1)));
+        }
 
 
     }

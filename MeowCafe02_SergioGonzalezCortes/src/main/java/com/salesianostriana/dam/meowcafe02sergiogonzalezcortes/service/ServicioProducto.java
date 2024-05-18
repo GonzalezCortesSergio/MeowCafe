@@ -16,4 +16,10 @@ public class ServicioProducto extends ServicioBaseImpl<Producto, Long, Repositor
         return repository.productosTipo(tipoProducto);
     }
 
+
+    public List<Producto> soloProductos() {
+
+        return repository.soloProductos();
+    }
+
 }
