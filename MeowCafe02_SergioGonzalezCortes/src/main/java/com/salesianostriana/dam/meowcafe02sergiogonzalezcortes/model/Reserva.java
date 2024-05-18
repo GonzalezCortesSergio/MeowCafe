@@ -24,13 +24,42 @@ public class Reserva {
 
     private double horasReservadas;
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToMany(
+            mappedBy = "reserva",
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<LineaReserva> lineasReserva = new ArrayList<>();
 
 
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable (
+            name = "reserva_gato",
+            joinColumns = @JoinColumn(name = "reserva_id"),
+            inverseJoinColumns = @JoinColumn(name = "gato_id")
+    )
+    private List<Gato> gatosReservados = new ArrayList<>();
 
 
 
     //HELPER
 
+    public void addLineaReserva(LineaReserva lr) {
+
+        lr.setReserva(this);
+        this.lineasReserva.add(lr);
+    }
+
+    public void removeLineaReserva(LineaReserva lr) {
+
+        this.lineasReserva.remove(lr);
+        lr.setReserva(null);
+    }
 
 }

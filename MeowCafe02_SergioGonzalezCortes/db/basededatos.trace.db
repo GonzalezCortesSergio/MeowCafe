@@ -5397,3 +5397,13 @@ org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SEL
 Syntax error in SQL statement "SELECT * FROM GATO \000d\000aJOIN [*]ON VACUNA(GATO.ID = VACUNA.GATO_ID)"; expected "identifier"; SQL statement:
 SELECT * FROM GATO 
 JOIN ON VACUNA(GATO.ID = VACUNA.GATO_ID) [42001-224]
+2024-05-18 14:21:39.930000+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM PRODUCTO \000d\000aJOIN [*]ON COMBO (COMBO.ID = PRODUCTO.ID)"; se esperaba "identifier"
+Syntax error in SQL statement "SELECT * FROM PRODUCTO \000d\000aJOIN [*]ON COMBO (COMBO.ID = PRODUCTO.ID)"; expected "identifier"; SQL statement:
+SELECT * FROM PRODUCTO 
+JOIN ON COMBO (COMBO.ID = PRODUCTO.ID) [42001-224]
+2024-05-18 15:33:40.108435+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM VACUNA \000d\000aJOIN GATO ON (GATO.ID = VACUNA.GATO_ID[*]"; se esperaba "(, ., [, ., ::, AT, FORMAT, *, /, %, +, -, ||, NOT, IS, ILIKE, REGEXP, AND, OR, ,, )"
+Syntax error in SQL statement "SELECT * FROM VACUNA \000d\000aJOIN GATO ON (GATO.ID = VACUNA.GATO_ID[*]"; expected "(, ., [, ., ::, AT, FORMAT, *, /, %, +, -, ||, NOT, IS, ILIKE, REGEXP, AND, OR, ,, )"; SQL statement:
+SELECT * FROM VACUNA 
+JOIN GATO ON (GATO.ID = VACUNA.GATO_ID [42001-224]

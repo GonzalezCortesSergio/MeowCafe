@@ -13,7 +13,14 @@ public interface RepositorioProducto extends JpaRepository<Producto, Long> {
     @Query("""
             SELECT p
             FROM Producto p
-            WHERE p.tipoProducto = :tipoProducto
+            WHERE TYPE(p) = Producto AND p.tipoProducto = :tipoProducto
             """)
-    public List<Producto> productosTipo(@Param("tipoProducto") TipoProducto tipoProducto);
+     List<Producto> productosTipo(@Param("tipoProducto") TipoProducto tipoProducto);
+
+    @Query("""
+            SELECT p
+            FROM Producto p
+            WHERE TYPE(p) = Producto
+            """)
+    List<Producto> soloProductos();
 }

@@ -25,6 +25,8 @@ public class ControladorDescarga {
     @Autowired
     private ServicioUsuario servicioUsuario;
 
+
+
     @GetMapping("/admin/descarga/{id}/{pwd}")
     public void descargarArchivo(HttpServletResponse response, @PathVariable("id") long id, @PathVariable("pwd") String contrasenaGenerata) throws IOException, DocumentException {
 
