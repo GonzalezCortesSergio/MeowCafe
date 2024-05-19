@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>MeowCafé | Combos</title>
+    <title>MeowCafé | Reservas</title>
     <link rel="stylesheet" href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../../static/css/styles.css" th:href="@{/css/styles.css}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
-<h1 class="display-5 text-center text-light py-5 w-100 m-auto">Combos</h1>
+<h1 class="display-5 text-center text-light py-5 w-100 m-auto">Reservas</h1>
 
 <nav class="navbar-expand py-3 mb-5">
 
@@ -23,7 +23,6 @@
                     </button>
                 </a>
             </li>
-
             <li class="nav-item">
                 <a class="nav-link" href="./index.html" th:href="@{/admin/index}">Inicio</a>
             </li>
@@ -33,6 +32,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="./gatitos.html" th:href="@{/admin/gatos}">Gatitos</a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="./clientes.html" th:href="@{/admin/clientes}">Clientes</a>
             </li>
@@ -42,7 +42,7 @@
                 <a class="nav-link" href="./productos.html" th:href="@{/admin/productos}">Productos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./reservas.html" th:href="@{/admin/reservas}">Reservas</a>
+                <a class="nav-link" href="./combos.html" th:href="@{/admin/combos}">Combos</a>
             </li>
 
             <li class="nav-item ms-5 ps-5">
@@ -68,61 +68,41 @@
 
     <table class="table table-stripped w-50 m-auto">
         <thead class="table-info">
-        <tr class="align-middle text-center">
-            <th>ID</th>
-            <th>Nombre del combo</th>
-            <th>Precio</th>
-            <th>Oferta</th>
+        <tr>
+            <th>Usuario</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Gatos</th>
             <th>Productos</th>
-            <th></th>
-            <th></th>
+            <th>Precio final</th>
         </tr>
         </thead>
 
         <tbody class="table-success">
 
-        <tr th:each="combo : ${combos}" class="align-middle text-center">
+        <tr th:each="reserva : ${reservas}">
 
-            <td th:text="${combo.id}">ID del combo</td>
-            <td th:text="${combo.nombre}">Nombre del combo</td>
-            <td th:text="${#numbers.formatDecimal(combo.precio,1,2)} + '€'">Precio del combo</td>
-            <td th:switch="${combo.esOferta}">
-                <span th:case="true">Se encuentra en ofertas</span>
-                <span th:case="false">No se encuentra en ofertas</span>
-            </td>
-            <td><div th:each="producto : ${combo.productos}">
-                <span th:text="${producto.nombre}">Nombre de los productos</span>
-            </div></td>
-            <td><a href="#" th:href="@{/admin/formularioCombo/{id}(id=${combo.id})}"><input type="button" value="Editar" class="btn btn-info" /></a></td>
-            <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" th:data-bs-target="'#modalBorrar-' + ${combo.id}">Borrar</button></td>
-
-            <div class="modal fade" th:id="'modalBorrar-' + ${combo.id}">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Borrar Combo</h4>
-                        </div>
-                        <div class="modal-body">
-
-                            <p>¿Está usted seguro que quiere borrar <span th:text="${combo.nombre}"></span>?
-                                No se podrán deshacer los cambios realizados</p>
-                        </div>
-                        <div class="modal-footer">
-
-                            <button type="button" class="btn btn-info" data-bs-dismiss="modal">Cancelar</button>
-                            <a th:href="@{/admin/borrarCombo/{id}(id=${combo.id})}"><button type="button" class="btn btn-danger">Borrar</button></a>
-                        </div>
-                    </div>
+            <td th:text="${reserva.usuarioReserva.nombre}"></td>
+            <td th:text="${reserva.fechaReserva}"></td>
+            <td th:text="${reserva.horaReserva}"></td>
+            <td>
+                <div th:each="gato : ${reserva.gatosReservados}">
+                    <p th:text="${gato.nombre}"></p>
                 </div>
-
-            </div>
+                <div th:if="${#lists.isEmpty(gatosReservados)}">
+                    <p>No hay gatos reservados</p>
+                </div>
+            </td>
+            <td>
+                <div th:each="linea : ${reserva.lineasReserva}">
+                    <p th:text="${linea.producto.nombre}"></p>
+                </div>
+            </td>
+            <td th:text="${#numbers.formatDecimal(reserva.precioFinal, 1, 2) + '€'}">
+            </td>
         </tr>
         </tbody>
     </table>
-
-    <div class="text-center mt-5">
-        <a href="./formularioCombos" th:href="@{/admin/formularioCombo}"><input type="button" class="btn btn-info" value="Agregar combo" /></a>
-    </div>
 
 </main>
 

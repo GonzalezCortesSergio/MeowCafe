@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>MeowCafé | Reserva</title>
+    <link rel="stylesheet" href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../static/css/styles.css" th:href="@{/css/styles.css}">
+    <script src="../../static/js/scriptReserva.js" th:src="@{/js/scriptReserva.js}" defer></script>
+</head>
+<body>
+<h1 class="display-5 text-center text-light py-5 w-100 m-auto">Reserva</h1>
+
+<nav class="navbar-expand py-3 mb-5">
+
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse d-flex justify-content-between" style="list-style-type: none;" id="mynavbar">
+            <li class="nav-item">
+
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="./index.html" th:href="@{/cliente/index}">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./sobreNosotros.html" th:href="@{/cliente/sobreNosotros}">Sobre nosotros</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./gatitos.html" th:href="@{/cliente/gatos}">Gatitos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./productos.html" th:href="@{/cliente/productos}">Productos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./combos.html" th:href="@{/cliente/combos}">Combos</a>
+            </li>
+
+            <li class="nav-item ms-5 ps-5">
+                <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">
+                    <span sec:authentication="name">Usuario</span>
+                </button>
+
+                <ul class="dropdown-menu">
+
+                    <li class="text-center mb-3">
+
+                        <a href="./informacionUsuario.html" th:href="@{/cliente/usuario}" class="btn btn-warning">Cuenta</a>
+                    </li>
+
+                    <li class="text-center mt-3">
+                        <form class="w-50 mx-auto" th:action="@{/logout}" name="formularioLogout" id="formularioLogout" method="post">
+                            <a href="javascript:document.getElementById('formularioLogout').submit()" class="btn btn-danger">Salir</a>
+                        </form>
+                    </li>
+                </ul>
+            </li>
+        </div>
+    </div>
+</nav>
+
+<main class="m-5 w-50 mx-auto">
+
+    <div th:unless="${#lists.isEmpty(reserva.lineasReserva) && #lists.isEmpty(gatosDisponibles)}">
+
+        <fieldset class="display-5 text-center" id="detallesReserva">Detalles de la reserva</fieldset>
+        <form th:action="@{/cliente/reserva/terminarReserva}" th:object="${reserva}" method="post" class="w-50 mx-auto" id="reserva" name="reserva">
+
+            <input type="hidden" th:field="*{usuarioReserva}" />
+            <input type="hidden" th:field="*{lineasReserva}" />
+            <label class="h2 text-center mt-5">Productos de la reserva</label>
+            <div class="m-3">
+                <table class="table table-stripped">
+
+                    <thead class="table-info">
+
+                        <tr>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>SubTotal</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody class="table-success">
+
+                        <tr th:each="lineaReserva : *{lineasReserva}">
+                            <td th:text="${lineaReserva.producto.nombre}"></td>
+                            <td th:text="${lineaReserva.cantidad}"></td>
+                            <td th:text="${#numbers.formatDecimal(lineaReserva.subTotal, 1, 2) + '€'}"></td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+
+
+            <div th:unless="${#lists.isEmpty(gatosDisponibles)}">
+                <label class="h2 text-center">Gatos</label>
+                <div class="m-3 input-group">
+
+                    <label for="gato1" class="input-group-text">Primer gato</label>
+                    <select th:field="*{gatosReservados}" class="form-control" id="gato1" name="gato1" required>
+                        <option value="-1">Sin gato</option>
+                        <option th:each="gato : ${gatosDisponibles}" th:value="${gato.id}" th:text="${gato.nombre}"></option>
+                    </select>
+                </div>
+                <div class="m-3 input-group">
+
+                    <label for="gato2" class="input-group-text">Segundo gato</label>
+                    <select th:field="*{gatosReservados}" class="form-control" id="gato2" name="gato2" required>
+                        <option value="-1">Sin gato</option>
+                        <option th:each="gato : ${gatosDisponibles}" th:value="${gato.id}" th:text="${gato.nombre}"></option>
+                    </select>
+                </div>
+                <div class="m-3 input-group">
+
+                    <label for="gato3" class="input-group-text">Tercer gato</label>
+                    <select th:field="*{gatosReservados}" class="form-control" id="gato3" name="gato3" required>
+                        <option value="-1">Sin gato</option>
+                        <option th:each="gato : ${gatosDisponibles}" th:value="${gato.id}" th:text="${gato.nombre}"></option>
+                    </select>
+                </div>
+                <div class="m-3 input-group">
+
+                    <label for="gato4" class="input-group-text">Cuatro gato</label>
+                    <select th:field="*{gatosReservados}" class="form-control" id="gato4" name="gato4" required>
+                        <option value="-1">Sin gato</option>
+                        <option th:each="gato : ${gatosDisponibles}" th:value="${gato.id}" th:text="${gato.nombre}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="m-3" th:if="${#lists.isEmpty(gatosDisponibles)}">
+
+                <h2 class="h2 text-center bg-info py-3">No hay gatos disponibles en este momento</h2>
+            </div>
+
+            <label class="h2 text-center">Fecha y hora de la reserva</label>
+            <div class="m-3 input-group">
+
+                <label for="fechaReserva" class="input-group-text">Fecha de la reserva</label>
+                <input id="fechaReserva" name="fechaReserva" class="form-control" type="date" min="" th:field="*{fechaReserva}" required/>
+            </div>
+            <div class="m-3 input-group">
+
+                <label for="horaReserva" class="input-group-text">Hora de la reserva</label>
+                <input type="time" id="horaReserva" name="horaReserva" class="form-control"  th:field="*{horaReserva}" required />
+            </div>
+
+
+            <div class="m-3 input-group">
+
+                <label for="horasReserva" class="input-group-text">¿Cuántas horas quiere reservar?</label>
+                <select id="horasReserva" name="horasReserva" th:field="*{horasReservadas}" class="form-control" required>
+                    <option value="1">30 minutos</option>
+                    <option value="1.5">1 hora</option>
+                    <option value="2">1 hora y media</option>
+                    <option value="2.5">2 horas</option>
+                    <option value="3">2 horas y media</option>
+                    <option value="3.5">3 horas</option>
+                </select>
+            </div>
+            <div class="mt-5 text-center">
+                <button type="submit" class="btn btn-info">Reservar</button>
+                <a href="./reserva.html" th:href="@{/cliente/reservaProducto}" class="btn btn-success">Agregar otro producto</a>
+            </div>
+
+
+        </form>
+
+    </div>
+
+    <div th:if="${#lists.isEmpty(reserva.lineasReserva) && #lists.isEmpty(gatosDisponibles)}">
+
+        <h2 class="h2 text-center py-3 bg-info">Lo sentimos, no es posible realizar reserva en estos momentos</h2>
+
+        <div class="text-center">
+            <a href="./index.html" th:href="@{/cliente/index}" class="btn btn-success">Volver al inicio</a>
+        </div>
+    </div>
+
+</main>
+
+
+
+
+</body>
+</html>

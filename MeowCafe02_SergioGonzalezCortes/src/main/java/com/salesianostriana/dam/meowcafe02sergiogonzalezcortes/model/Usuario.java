@@ -1,14 +1,12 @@
 package com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -35,6 +33,16 @@ public class Usuario implements UserDetails{
 	private TipoUsuario tipo;
 
 	private boolean esPremium;
+
+	@OneToMany(
+			mappedBy = "usuarioReserva",
+			fetch = FetchType.EAGER
+	)
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
+	@Builder.Default
+	private List<Reserva> reservas = new ArrayList<>();
+
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

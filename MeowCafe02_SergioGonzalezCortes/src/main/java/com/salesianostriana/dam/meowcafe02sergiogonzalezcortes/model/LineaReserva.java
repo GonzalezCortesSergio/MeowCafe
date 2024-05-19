@@ -27,10 +27,18 @@ public class LineaReserva {
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_linea_reserva_reserva"))
     private Reserva reserva;
 
+    private double subTotal;
+
 
     public void addToReserva(Reserva r) {
 
         this.reserva = r;
         r.getLineasReserva().add(this);
+    }
+
+    public void deleteFromReserva(Reserva r) {
+
+        r.getLineasReserva().remove(this);
+        this.reserva = null;
     }
 }

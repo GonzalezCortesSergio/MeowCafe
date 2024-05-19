@@ -63,6 +63,27 @@
 <main class="m-5 w-50 mx-auto">
 
 
+    <div th:unless="${#lists.isEmpty(productos)}">
+
+        <fieldset class="display-5 text-center">¿Algún producto o combo adicional?</fieldset>
+        <form method="post" th:action="@{/cliente/reserva/agregarLineaReserva}" th:object="${lineaReserva}" class="w-50 mx-auto" id="lineaReserva" name="lineaReserva">
+            <div class="input-group m-3">
+                <label for="producto" class="input-group-text">Producto o combo</label>
+                <select th:field="*{producto}" class="form-control" id="producto" name="producto" required>
+                    <option th:each="producto : ${productos}" th:value="${producto.id}" th:text="${producto.nombre} + ' ' + ${producto.tipoProducto}"></option>
+                </select>
+            </div>
+            <div class="input-group m-3">
+
+                <label for="cantidad" class="input-group-text">Cantidad</label>
+                <input type="number" min="1" class="form-control" id="cantidad" name="cantidad" th:field="*{cantidad}" required />
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Agregar</button>
+            </div>
+        </form>
+    </div>
 
 </main>
 

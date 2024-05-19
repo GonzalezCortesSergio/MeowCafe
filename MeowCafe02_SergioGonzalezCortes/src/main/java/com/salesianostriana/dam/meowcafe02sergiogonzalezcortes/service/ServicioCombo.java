@@ -12,10 +12,12 @@ import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.base.Serv
 @Service
 public class ServicioCombo extends ServicioBaseImpl<Combo, Long, RepositorioCombo>{
 
-    public void obtenerPrecioCombo(Combo combo) {
+    public double obtenerPrecioCombo(Combo combo) {
 
-        combo.setPrecio(combo.getProductos().stream()
+        double precioSinRebaja = combo.getProductos().stream()
                 .mapToDouble(Producto::getPrecio)
-                .sum());
+                .sum();
+
+        return precioSinRebaja * (1 - 0.35);
     }
 }
