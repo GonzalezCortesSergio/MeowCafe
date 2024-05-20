@@ -1,6 +1,6 @@
 insert into gato (id, nombre, horas_disponibles, vacunado, imagen) values (1, 'Freyja', '19:48', false, '/img/WhatsApp Image 2024-05-02 at 19.16.19.jpeg');
 insert into gato (id, nombre, horas_disponibles, vacunado, imagen) values (2, 'Elva', '7:11', false, 'https://t2.ea.ltmcdn.com/es/posts/7/4/3/como_ayudar_a_un_gatito_a_defecar_20347_orig.jpg');
-insert into gato (id, nombre, horas_disponibles, vacunado, imagen) values (3, 'Ebba', '19:45', false, 'https://t2.ea.ltmcdn.com/es/posts/7/4/3/como_ayudar_a_un_gatito_a_defecar_20347_orig.jpg');
+insert into gato (id, nombre, horas_disponibles, vacunado, imagen) values (3, 'Ahsoka', '19:45', false, '/img/WhatsApp Image 2024-05-20 at 19.26.18.jpeg');
 insert into gato (id, nombre, horas_disponibles, vacunado, imagen) values (4, 'Lucien', '0:45', false, 'https://www.tiendanimal.es/articulos/wp-content/uploads/2010/06/la-forma-de-ser-de-tu-gatito-cachorro-1200x900.jpg');
 insert into gato (id, nombre, horas_disponibles, vacunado, imagen) values (5, 'Beth', '2:42', false, 'https://clinicaveterinariaalbeitar.es/wp-content/uploads/2019/01/gatito1.jpg');
 insert into gato (id, nombre, horas_disponibles, vacunado, imagen) values (6, 'Vick', '7:44', false, 'https://www.zooplus.es/magazine/wp-content/uploads/2018/04/fotolia_169457098.jpg');
