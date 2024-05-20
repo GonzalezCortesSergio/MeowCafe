@@ -76,6 +76,7 @@
 
     <form class="w-100" method="post" th:action="@{/admin/formularioCombo/editar}" th:object="${combo}" name="formularioCombo" id="formularioCombo" enctype="multipart/form-data">
         <input type="hidden" th:field="*{id}" />
+        <input type="hidden" th:field="*{tipoProducto}" />
         <div class="m-3 input-group">
             <label for="nombre" class="input-group-text">Nombre:</label>
             <input type="text" class="form-control" id="nombre" placeholder="Nombre del combo" name="nombre" th:field="*{nombre}">

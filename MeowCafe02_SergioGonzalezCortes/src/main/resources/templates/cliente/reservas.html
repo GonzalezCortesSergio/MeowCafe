@@ -17,32 +17,29 @@
     <div class="container-fluid">
         <div class="collapse navbar-collapse d-flex justify-content-between" style="list-style-type: none;" id="mynavbar">
             <li class="nav-item">
-                <a href="./login.html" th:href="@{/admin/reserva}">
+                <a href="./login.html" th:href="@{/cliente/antesDeReservar}">
                     <button type="button" class="btn btn-outline-dark border-0" id="botonReserva">
                         RESERVA
                     </button>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./index.html" th:href="@{/admin/index}">Inicio</a>
+                <a class="nav-link" href="./index.html" th:href="@{/cliente/index}">Inicio</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./sobreNosotros.html" th:href="@{/admin/sobreNosotros}">Sobre nosotros</a>
+                <a class="nav-link" href="./sobreNosotros.html" th:href="@{/cliente/sobreNosotros}">Sobre nosotros</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./gatitos.html" th:href="@{/admin/gatos}">Gatitos</a>
+                <a class="nav-link" href="./gatitos.html" th:href="@{/cliente/gatos}">Gatitos</a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="./clientes.html" th:href="@{/admin/clientes}">Clientes</a>
-            </li>
 
             <li class="nav-item">
 
-                <a class="nav-link" href="./productos.html" th:href="@{/admin/productos}">Productos</a>
+                <a class="nav-link" href="./productos.html" th:href="@{/cliente/productos}">Productos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./combos.html" th:href="@{/admin/combos}">Combos</a>
+                <a class="nav-link" href="./combos.html" th:href="@{/cliente/combos}">Combos</a>
             </li>
 
             <li class="nav-item ms-5 ps-5">
@@ -66,10 +63,10 @@
 
 <main class="container m-auto">
 
+    <div th:unless="(${reservas} == null) or (${#lists.isEmpty(reservas)})">
     <table class="table table-stripped w-50 m-auto">
         <thead class="table-info">
         <tr class="align-middle text-center">
-            <th>Usuario</th>
             <th>Fecha</th>
             <th>Hora</th>
             <th>Gatos</th>
@@ -82,7 +79,6 @@
 
         <tr th:each="reserva : ${reservas}" class="align-middle text-center">
 
-            <td th:text="${reserva.usuarioReserva.nombre}"></td>
             <td th:text="${reserva.fechaReserva}"></td>
             <td th:text="${reserva.horaReserva}"></td>
             <td class="row">
@@ -103,6 +99,12 @@
         </tr>
         </tbody>
     </table>
+    </div>
+
+    <div th:if="${#lists.isEmpty(reservas)}">
+
+        <h2 class="display-3 text-center py-5">No ha realizado reservas todavía</h2>
+    </div>
 
 </main>
 

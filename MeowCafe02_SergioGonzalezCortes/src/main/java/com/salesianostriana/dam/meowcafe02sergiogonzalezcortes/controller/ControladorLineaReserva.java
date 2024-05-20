@@ -4,6 +4,7 @@ import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.LineaReserv
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.Producto;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.Reserva;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.Usuario;
+import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioGato;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioLineaReserva;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioProducto;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioReserva;
@@ -27,6 +28,9 @@ public class ControladorLineaReserva {
     @Autowired
     private ServicioProducto servicioProducto;
 
+    @Autowired
+    private ServicioGato servicioGato;
+
 
 
     @GetMapping("/cliente/reservaProducto")
@@ -41,17 +45,16 @@ public class ControladorLineaReserva {
     @PostMapping("/cliente/reserva/agregarLineaReserva")
     public String agregarLineaReserva(@ModelAttribute("lineaReserva") LineaReserva lineaReserva, @AuthenticationPrincipal Usuario usuario, Model model) {
 
-        lineaReserva.getProducto().addToLineaReserva(lineaReserva);
-
-
+        servicioLineaReserva.save(lineaReserva);
         Reserva reserva = servicioReserva.getReserva(usuario);
+        reserva.addToUsuario(usuario);
 
         lineaReserva.setSubTotal(servicioLineaReserva.calcularSubTotal(lineaReserva));
 
         lineaReserva.addToReserva(reserva);
         servicioReserva.save(reserva);
-        servicioLineaReserva.save(lineaReserva);
         model.addAttribute("reserva", reserva);
+        model.addAttribute("gatosDisponibles", servicioGato.gatosDisponibles());
 
         return "cliente/detallesReserva";
     }

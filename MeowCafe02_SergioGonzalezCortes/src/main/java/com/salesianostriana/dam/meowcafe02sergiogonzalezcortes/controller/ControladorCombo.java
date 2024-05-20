@@ -68,6 +68,7 @@ public class ControladorCombo {
             }
 
         combo.setPrecio(servicioCombo.obtenerPrecioCombo(combo));
+        combo.setTipoProducto(TipoProducto.COMBO);
 
         servicioCombo.save(combo);
 

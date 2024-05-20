@@ -36,6 +36,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="./combos.html" th:href="@{/cliente/combos}">Combos</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./reservas.html" th:href="@{/cliente/reservas}">Reservas</a>
+            </li>
 
             <li class="nav-item ms-5 ps-5">
                 <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">
@@ -51,7 +54,7 @@
 
                     <li class="text-center mt-3">
                         <form class="w-50 mx-auto" th:action="@{/logout}" name="formularioLogout" id="formularioLogout" method="post">
-                            <a href="javascript:document.getElementById('formularioLogout').submit()" class="btn btn-danger">Salir</a>
+                            <button type="submit" class="btn btn-danger">Salir</button>
                         </form>
                     </li>
                 </ul>

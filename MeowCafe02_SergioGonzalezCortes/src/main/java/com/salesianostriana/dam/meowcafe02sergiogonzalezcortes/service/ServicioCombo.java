@@ -14,10 +14,15 @@ public class ServicioCombo extends ServicioBaseImpl<Combo, Long, RepositorioComb
 
     public double obtenerPrecioCombo(Combo combo) {
 
+        double rebaja = 0.35;
+
+        if(combo.isEsOferta())
+            return 0;
+
         double precioSinRebaja = combo.getProductos().stream()
                 .mapToDouble(Producto::getPrecio)
                 .sum();
 
-        return precioSinRebaja * (1 - 0.35);
+        return precioSinRebaja * (1 - rebaja);
     }
 }

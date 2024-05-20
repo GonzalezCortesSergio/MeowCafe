@@ -39,6 +39,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="./combos.html" th:href="@{/cliente/combos}">Combos</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./reservas.html" th:href="@{/cliente/reservas}">Reservas</a>
+            </li>
 
             <li class="nav-item ms-5 ps-5">
 
@@ -55,7 +58,7 @@
 
                     <li class="text-center mt-3">
                         <form class="w-50 mx-auto" th:action="@{/logout}" name="formularioLogout" id="formularioLogout" method="post">
-                            <a href="javascript:document.getElementById('formularioLogout').submit()" class="btn btn-danger">Salir</a>
+                            <button type="submit" class="btn btn-danger">Salir</button>
                         </form>
                     </li>
                 </ul>
@@ -72,10 +75,10 @@
         <div class="card-body">
             <h4 class="card-title" th:text="${gatito.nombre}">Nombre</h4>
             <p class="card-text" th:text="'Hora disponible: ' + ${#temporals.format(gatito.horasDisponibles, 'HH:mm')}">Hora disponible</p>
-            <div th:switch="${gatito.ocupado}">
+            <div th:switch="${gatito.vacunado}">
 
-                <p th:case="true" class="card-text">Ocupado</p>
-                <p th:case="false" class="card-text">Disponible</p>
+                <p th:case="false" class="card-text">Ocupado</p>
+                <p th:case="true" class="card-text">Disponible</p>
 
             </div>
         </div>

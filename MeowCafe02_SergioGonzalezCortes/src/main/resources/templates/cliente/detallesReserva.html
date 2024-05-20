@@ -37,6 +37,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="./combos.html" th:href="@{/cliente/combos}">Combos</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./reservas.html" th:href="@{/cliente/reservas}">Reservas</a>
+            </li>
 
             <li class="nav-item ms-5 ps-5">
                 <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">
@@ -52,7 +55,7 @@
 
                     <li class="text-center mt-3">
                         <form class="w-50 mx-auto" th:action="@{/logout}" name="formularioLogout" id="formularioLogout" method="post">
-                            <a href="javascript:document.getElementById('formularioLogout').submit()" class="btn btn-danger">Salir</a>
+                            <button type="submit" class="btn btn-danger">Salir</button>
                         </form>
                     </li>
                 </ul>
@@ -70,13 +73,14 @@
 
             <input type="hidden" th:field="*{usuarioReserva}" />
             <input type="hidden" th:field="*{lineasReserva}" />
+            <input type="hidden" th:field="*{id}" />
             <label class="h2 text-center mt-5">Productos de la reserva</label>
             <div class="m-3">
                 <table class="table table-stripped">
 
                     <thead class="table-info">
 
-                        <tr>
+                        <tr class="align-middle text-center">
                             <th>Producto</th>
                             <th>Cantidad</th>
                             <th>SubTotal</th>
@@ -86,7 +90,7 @@
 
                     <tbody class="table-success">
 
-                        <tr th:each="lineaReserva : *{lineasReserva}">
+                        <tr th:each="lineaReserva : *{lineasReserva}" class="align-middle text-center">
                             <td th:text="${lineaReserva.producto.nombre}"></td>
                             <td th:text="${lineaReserva.cantidad}"></td>
                             <td th:text="${#numbers.formatDecimal(lineaReserva.subTotal, 1, 2) + '€'}"></td>
@@ -170,6 +174,7 @@
 
 
         </form>
+        <div class="text-center text-light"></div>
 
     </div>
 

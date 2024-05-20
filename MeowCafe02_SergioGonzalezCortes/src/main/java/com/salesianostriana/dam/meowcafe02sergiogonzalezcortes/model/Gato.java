@@ -20,7 +20,7 @@ public class Gato {
 
 	private String nombre;
 	private LocalTime horasDisponibles;
-	private boolean ocupado;
+	private boolean vacunado;
 	private String imagen;
 
 	@ToString.Exclude
