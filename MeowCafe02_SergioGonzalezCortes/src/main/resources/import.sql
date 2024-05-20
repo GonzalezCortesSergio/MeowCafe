@@ -13,10 +13,11 @@ insert into producto(id, nombre, precio, tipo_producto, imagen) values(1, 'Tarta
 insert into producto(id, nombre, precio, tipo_producto, imagen) values(2, 'Carajillo', 3.4, 'BEBIDA', 'https://imag.bonviveur.com/carajillo.jpg');
 insert into producto(id, nombre, precio, tipo_producto, imagen) values(3, 'Pastel de calabaza', 4.15, 'COMIDA', 'https://diabetesmarquez.com/wp-content/uploads/2020/04/DSC_0209-768x512.jpg');
 insert into producto(id, nombre, precio, tipo_producto, imagen) values(4, 'Capuccino', 2.50, 'BEBIDA', 'https://lilobrunch.com/cdn/shop/products/capuccino_1200x1200.jpg?v=1645735077');
+insert into producto(id, nombre, precio, tipo_producto, imagen) values(5, 'Sin producto', 0.00, 'SINPRODUCTO', 'imagen');
 
 insert into usuario (id, nombre, apellidos, email, username, password, tipo, es_premium) values (1, 'admin', 'admin', 'admin@gmail.com', 'admin', '{noop}admin', 'ADMIN', true);
 insert into usuario (id, nombre, apellidos, email, username, password, tipo, es_premium) values (2, 'user', 'user', 'user@gmail.com', 'user', '{noop}1234', 'CLIENTE', true);
 
 ALTER SEQUENCE gato_seq RESTART WITH 60;
-ALTER SEQUENCE producto_seq RESTART WITH 54;
+ALTER SEQUENCE producto_seq RESTART WITH 55;
 ALTER SEQUENCE usuario_seq RESTART WITH 52;

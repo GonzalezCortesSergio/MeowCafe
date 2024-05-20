@@ -20,7 +20,7 @@ public interface RepositorioProducto extends JpaRepository<Producto, Long> {
     @Query("""
             SELECT p
             FROM Producto p
-            WHERE TYPE(p) = Producto
+            WHERE TYPE(p) = Producto AND p.tipoProducto != :tipoSinProducto
             """)
-    List<Producto> soloProductos();
+    List<Producto> soloProductos(@Param("tipoSinProducto") TipoProducto tipoProducto);
 }

@@ -48,6 +48,10 @@
                 </button>
 
                 <ul class="dropdown-menu">
+                    <li class="text-center mb-3">
+
+                        <a href="./informacionUsuario.html" th:href="@{/cliente/usuario}" class="btn btn-warning">Cuenta</a>
+                    </li>
 
                     <li class="text-center mt-3">
                         <form class="w-50 mx-auto" th:action="@{/logout}" name="formularioLogout" id="formularioLogout" method="post">
@@ -81,7 +85,7 @@
 
             <td th:text="${reserva.fechaReserva}"></td>
             <td th:text="${reserva.horaReserva}"></td>
-            <td class="row">
+            <td class="row-column">
                 <div th:each="gato : ${reserva.gatosReservados}" class="col-6 mx-auto" >
                     <p th:text="${gato.nombre}" ></p>
                 </div>

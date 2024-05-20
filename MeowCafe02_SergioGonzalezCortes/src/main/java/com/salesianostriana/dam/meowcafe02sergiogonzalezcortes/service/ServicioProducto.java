@@ -19,7 +19,7 @@ public class ServicioProducto extends ServicioBaseImpl<Producto, Long, Repositor
 
     public List<Producto> soloProductos() {
 
-        return repository.soloProductos();
+        return repository.soloProductos(TipoProducto.SINPRODUCTO);
     }
 
 }

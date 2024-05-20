@@ -14,7 +14,7 @@ public class ServicioCombo extends ServicioBaseImpl<Combo, Long, RepositorioComb
 
     public double obtenerPrecioCombo(Combo combo) {
 
-        double rebaja = 0.35;
+        double rebaja = 0.15;
 
         if(combo.isEsOferta())
             return 0;

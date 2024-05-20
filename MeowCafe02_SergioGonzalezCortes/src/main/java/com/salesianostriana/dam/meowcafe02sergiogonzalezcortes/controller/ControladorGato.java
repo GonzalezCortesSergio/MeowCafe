@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.controller;
 
+import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.exception.VacunaSinGato;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.Vacuna;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.model.Gato;
 import com.salesianostriana.dam.meowcafe02sergiogonzalezcortes.service.ServicioGato;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @Controller
 public class ControladorGato {
@@ -90,7 +92,7 @@ public class ControladorGato {
 	}
 
 	@GetMapping("/admin/vacunas/{id}")
-	public String formularioVacunas(@PathVariable("id") long id, Model model) {
+	public String formularioVacunas(@PathVariable(value = "id", required = false) long id, Model model) throws VacunaSinGato, NoResourceFoundException {
 
 		if (servicioGato.findById(id).isPresent()) {
 
@@ -101,7 +103,7 @@ public class ControladorGato {
 		}
 		else {
 
-			return "redirect:/admin/gatos";
+			throw new VacunaSinGato();
 		}
 	}
 

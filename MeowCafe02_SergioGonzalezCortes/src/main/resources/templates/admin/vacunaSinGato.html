@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Vacuna sin gato</title>
+    <link rel="stylesheet" href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" href="../../static/css/styles.css" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+    <div class="mx-auto w-50 py-5 my-5 text-center">
+        <p th:text="${error}" ></p>
+
+        <a th:href="@{/admin/gatos}" class="btn btn-dark">Volver con los gatitos</a>
+    </div>
+</body>
+</html>

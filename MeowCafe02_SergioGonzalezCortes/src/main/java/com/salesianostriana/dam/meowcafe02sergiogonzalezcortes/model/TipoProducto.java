@@ -4,7 +4,8 @@ public enum TipoProducto {
 
 	BEBIDA("BEBIDA"),
 	COMIDA("COMIDA"),
-	COMBO("COMBO");
+	COMBO("COMBO"),
+	SINPRODUCTO("SINPRODUCTO");
 	
 	private String valor;
 	
