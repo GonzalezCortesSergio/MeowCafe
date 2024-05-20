@@ -12,7 +12,7 @@ public interface RepositorioGato extends JpaRepository<Gato, Long>{
     @Query("""
             SELECT g
             FROM Gato g
-            WHERE g.ocupado IS FALSE
+            WHERE g.vacunado IS TRUE
             """)
     public List<Gato> gatosDisponibles ();
 }

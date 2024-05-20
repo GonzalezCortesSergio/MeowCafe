@@ -56,7 +56,7 @@ public class ControladorCombo {
     }
 
     @PostMapping("/admin/formularioCombo/agregar")
-    public String agregarCombo(@ModelAttribute("combo")Combo combo, @RequestParam(required = false) ArrayList<Long> listaIdProductos) {
+    public String agregarCombo(@ModelAttribute("combo")Combo combo, @RequestParam(required = false) Long[] listaIdProductos) {
 
         if (listaIdProductos != null)
             for (Long id : listaIdProductos) {
@@ -67,7 +67,8 @@ public class ControladorCombo {
 
             }
 
-        servicioCombo.obtenerPrecioCombo(combo);
+        combo.setPrecio(servicioCombo.obtenerPrecioCombo(combo));
+        combo.setTipoProducto(TipoProducto.COMBO);
 
         servicioCombo.save(combo);
 
@@ -93,7 +94,7 @@ public class ControladorCombo {
     }
 
     @PostMapping("/admin/formularioCombo/editar")
-    public String editarCombo(@ModelAttribute("combo") Combo combo, @RequestParam(required = false) ArrayList<Long> listaIdProductos) {
+    public String editarCombo(@ModelAttribute("combo") Combo combo, @RequestParam(required = false) Long[] listaIdProductos) {
 
         if (listaIdProductos != null)
 
@@ -105,7 +106,7 @@ public class ControladorCombo {
 
             }
 
-        servicioCombo.obtenerPrecioCombo(combo);
+        combo.setPrecio(servicioCombo.obtenerPrecioCombo(combo));
 
         servicioCombo.edit(combo);
         return "redirect:/admin/combos";

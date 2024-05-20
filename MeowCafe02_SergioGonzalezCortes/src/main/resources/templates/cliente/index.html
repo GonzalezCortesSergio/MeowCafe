@@ -18,7 +18,7 @@
     <div class="container-fluid">
         <div class="collapse navbar-collapse d-flex justify-content-between" style="list-style-type: none;" id="mynavbar">
             <li class="nav-item">
-                <a href="./reserva" th:href="@{/cliente/reserva}">
+                <a href="./antesDeReservar.html" th:href="@{/cliente/antesDeReservar}">
                     <button type="button" class="btn btn-outline-dark border-0" id="botonReserva">
                         RESERVA
                     </button>
@@ -37,6 +37,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="./combos.html" th:href="@{/cliente/combos}">Combos</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./reservas.html" th:href="@{/cliente/reservas}">Reservas</a>
+            </li>
 
             <li class="nav-item ms-5 ps-5">
                 <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">
@@ -52,7 +55,7 @@
 
                     <li class="text-center mt-3">
                         <form class="w-50 mx-auto" th:action="@{/logout}" name="formularioLogout" id="formularioLogout" method="post">
-                            <a href="javascript:document.getElementById('formularioLogout').submit()" class="btn btn-danger">Salir</a>
+                            <button type="submit" class="btn btn-danger">Salir</button>
                         </form>
                     </li>
                 </ul>

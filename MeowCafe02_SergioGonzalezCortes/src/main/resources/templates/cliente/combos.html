@@ -20,7 +20,7 @@
     <div class="container-fluid">
         <div class="collapse navbar-collapse d-flex justify-content-between" style="list-style-type: none;" id="mynavbar">
             <li class="nav-item">
-                <a href="./reserva" th:href="@{/cliente/reserva}">
+                <a href="./antesDeReservar.html" th:href="@{/cliente/antesDeReservar}">
                     <button type="button" class="btn btn-outline-dark border-0" id="botonReserva">
                         RESERVA
                     </button>
@@ -39,6 +39,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="./productos.html" th:href="@{/cliente/productos}">Productos</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./reservas.html" th:href="@{/cliente/reservas}">Reservas</a>
+            </li>
 
             <li class="nav-item ms-5 ps-5">
 
@@ -55,7 +58,7 @@
 
                     <li class="text-center mt-3">
                         <form class="w-50 mx-auto" th:action="@{/logout}" name="formularioLogout" id="formularioLogout" method="post">
-                            <a href="javascript:document.getElementById('formularioLogout').submit()" class="btn btn-danger">Salir</a>
+                            <button type="submit" class="btn btn-danger">Salir</button>
                         </form>
                     </li>
                 </ul>
@@ -68,12 +71,12 @@
 <main class="mx-auto row p-5 justify-content-between">
 
     <div class="card col-12 col-xl-3 my-3 mx-xl-3" th:each="combo : ${combos}" data-aos="flip-up">
-        <div class="d-flex bg-light">
-            <img class="card-img-top mx-auto my-3" th:each="producto : ${combo.getProducto()}" th:src="${producto.imagen}" alt="Card image" style="width: 40%; height: 100px;">
+        <div class="row bg-light w-50 mx-auto">
+            <img class="card-img-top my-3 col-3 " th:each="producto : ${combo.getProductos()}" th:src="${producto.imagen}" alt="Card image" style="height: 100px;">
         </div>
             <div class="card-body">
-            <h4 class="card-title" th:text="${combo.nombreCombo}">Nombre</h4>
-            <p class="card-text" th:text="'Precio: ' + ${#numbers.formatDecimal(combo.precioCombo, 1, 2, 'COMMA')} + '€'">Precio combo</p>
+            <h4 class="card-title" th:text="${combo.nombre}">Nombre</h4>
+            <p class="card-text" th:text="'Precio: ' + ${#numbers.formatDecimal(combo.precio, 1, 2, 'COMMA')} + '€'">Precio combo</p>
             <div th:switch="${combo.esOferta}">
 
                 <p th:case="true" class="card-text">El combo se encuentra en oferta, puedes incluirlo de forma gratuita a tu reserva</p>

@@ -13,6 +13,25 @@ p {
 
     font-size: 24pt;
 }
+.antes-reservar {
+
+    background-color: #7e5950;
+}
+#detallesReserva {
+
+    background-color: #7e5950;
+}
+
+.table-success {
+
+   --bs-table-bg: #8d4925;
+   --bs-table-border-color: #8d4925;
+}
+.table-info {
+
+--bs-table-bg: #7e5950;
+--bs-table-border-color: #7e5950;
+}
 
 nav{
 

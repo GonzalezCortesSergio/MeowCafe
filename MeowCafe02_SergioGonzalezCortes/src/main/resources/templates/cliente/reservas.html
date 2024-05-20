@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>MeowCafé | Reservas</title>
+    <link rel="stylesheet" href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" href="../../static/css/styles.css" th:href="@{/css/styles.css}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</head>
+<body>
+<h1 class="display-5 text-center text-light py-5 w-100 m-auto">Reservas</h1>
+
+<nav class="navbar-expand py-3 mb-5">
+
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse d-flex justify-content-between" style="list-style-type: none;" id="mynavbar">
+            <li class="nav-item">
+                <a href="./login.html" th:href="@{/cliente/antesDeReservar}">
+                    <button type="button" class="btn btn-outline-dark border-0" id="botonReserva">
+                        RESERVA
+                    </button>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./index.html" th:href="@{/cliente/index}">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./sobreNosotros.html" th:href="@{/cliente/sobreNosotros}">Sobre nosotros</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./gatitos.html" th:href="@{/cliente/gatos}">Gatitos</a>
+            </li>
+
+
+            <li class="nav-item">
+
+                <a class="nav-link" href="./productos.html" th:href="@{/cliente/productos}">Productos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./combos.html" th:href="@{/cliente/combos}">Combos</a>
+            </li>
+
+            <li class="nav-item ms-5 ps-5">
+                <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">
+                    <span sec:authentication="name">Usuario</span>
+                </button>
+
+                <ul class="dropdown-menu">
+
+                    <li class="text-center mt-3">
+                        <form class="w-50 mx-auto" th:action="@{/logout}" name="formularioLogout" id="formularioLogout" method="post">
+                            <button type="submit" class="btn btn-danger">Salir</button>
+                        </form>
+                    </li>
+                </ul>
+            </li>
+        </div>
+    </div>
+</nav>
+
+
+<main class="container m-auto">
+
+    <div th:unless="(${reservas} == null) or (${#lists.isEmpty(reservas)})">
+    <table class="table table-stripped w-50 m-auto">
+        <thead class="table-info">
+        <tr class="align-middle text-center">
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Gatos</th>
+            <th>Productos</th>
+            <th>Precio final</th>
+        </tr>
+        </thead>
+
+        <tbody class="table table-success">
+
+        <tr th:each="reserva : ${reservas}" class="align-middle text-center">
+
+            <td th:text="${reserva.fechaReserva}"></td>
+            <td th:text="${reserva.horaReserva}"></td>
+            <td class="row">
+                <div th:each="gato : ${reserva.gatosReservados}" class="col-6 mx-auto" >
+                    <p th:text="${gato.nombre}" ></p>
+                </div>
+                <div th:if="${#lists.isEmpty(reserva.gatosReservados)}">
+                    <p>No hay gatos reservados</p>
+                </div>
+            </td>
+            <td>
+                <div th:each="linea : ${reserva.lineasReserva}">
+                    <p th:text="${linea.producto.nombre} + ': ' + ${linea.cantidad}"></p>
+                </div>
+            </td>
+            <td th:text="${#numbers.formatDecimal(reserva.precioFinal, 1, 2) + '€'}">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+
+    <div th:if="${#lists.isEmpty(reservas)}">
+
+        <h2 class="display-3 text-center py-5">No ha realizado reservas todavía</h2>
+    </div>
+
+</main>
+
+
+
+
+</body>
+</html>
