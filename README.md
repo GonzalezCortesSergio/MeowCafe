@@ -96,8 +96,8 @@ Los combos estarán compuestos por productos, tienen como mínimo 1 bebida y 1 p
 
 ### Usuario
 
-username: user
-password: 1234
+<b>username</b>: user
+<b>password</b>: 1234
 
 ### Ruta de acceso
 
