@@ -87,3 +87,24 @@ Los combos estarán compuestos por productos, tienen como mínimo 1 bebida y 1 p
 
 ## Imagen del diagrama de clases del diseño
 <img src="diagrama/Diagrama de clases del diseño.jpg" >
+
+
+### Administrador
+
+username: admin
+password: admin
+
+### Usuario
+
+username: user
+password: 1234
+
+### Ruta de acceso
+
+./MeowCafe02_SergioGonzalezCortes/src/main/java/com/salesianostriana/dam/meowcafe02sergiogonzalezcortes
+
+### Ejecutable
+
+MeowCafe02SergioGonzalezCortesApplication
+
+
