@@ -25,7 +25,6 @@ public class ControladorReserva {
     @Autowired
     private ServicioUsuario servicioUsuario;
 
-
     @PostMapping("/cliente/reserva/terminarReserva")
     public String terminarReserva(@ModelAttribute("reserva") Reserva reserva) {
 

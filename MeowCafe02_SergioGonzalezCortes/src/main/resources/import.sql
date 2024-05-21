@@ -14,10 +14,14 @@ insert into producto(id, nombre, precio, tipo_producto, imagen) values(2, 'Caraj
 insert into producto(id, nombre, precio, tipo_producto, imagen) values(3, 'Pastel de calabaza', 4.15, 'COMIDA', 'https://diabetesmarquez.com/wp-content/uploads/2020/04/DSC_0209-768x512.jpg');
 insert into producto(id, nombre, precio, tipo_producto, imagen) values(4, 'Capuccino', 2.50, 'BEBIDA', 'https://lilobrunch.com/cdn/shop/products/capuccino_1200x1200.jpg?v=1645735077');
 insert into producto(id, nombre, precio, tipo_producto, imagen) values(5, 'Sin producto', 0.00, 'SINPRODUCTO', 'imagen');
+insert into producto(id, nombre, precio, tipo_producto, imagen) values(6, 'San Jacobo', 4.50, 'COMIDA', 'https://s1.elespanol.com/2022/11/28/actualidad/721938308_229066038_1706x960.jpg');
+insert into producto(id, nombre, precio, tipo_producto, imagen) values(7, 'Flamenquín', 6.75, 'COMIDA', 'https://www.unileverfoodsolutions.es/dam/global-ufs/mcos/spain/acm/selling-story-calcmenu/flamenquin-cordobes-header.jpg');
+insert into producto(id, nombre, precio, tipo_producto, imagen) values(8, 'Matcha Latte', 3.32, 'BEBIDA', 'https://perfectdailygrind.com/es/wp-content/uploads/sites/2/2020/09/Matcha-Latte-Cover.jpg');
+insert into producto(id, nombre, precio, tipo_producto, imagen) values(9, 'Coca Cola', 2.50, 'BEBIDA', 'https://www.coca-cola.com/content/dam/onexp/es/es/products/coca-cola-sabor-original/es_cc_sabor_original_banner_desktop_1440x810.jpg');
 
 insert into usuario (id, nombre, apellidos, email, username, password, tipo, es_premium) values (1, 'admin', 'admin', 'admin@gmail.com', 'admin', '{noop}admin', 'ADMIN', true);
 insert into usuario (id, nombre, apellidos, email, username, password, tipo, es_premium) values (2, 'user', 'user', 'user@gmail.com', 'user', '{noop}1234', 'CLIENTE', true);
 
 ALTER SEQUENCE gato_seq RESTART WITH 60;
-ALTER SEQUENCE producto_seq RESTART WITH 55;
+ALTER SEQUENCE producto_seq RESTART WITH 59;
 ALTER SEQUENCE usuario_seq RESTART WITH 52;

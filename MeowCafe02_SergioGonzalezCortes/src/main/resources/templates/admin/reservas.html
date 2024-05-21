@@ -85,7 +85,7 @@
             <td th:text="${reserva.usuarioReserva.nombre}"></td>
             <td th:text="${reserva.fechaReserva}"></td>
             <td th:text="${reserva.horaReserva}"></td>
-            <td class="row">
+            <td class="row-column">
                 <div th:each="gato : ${reserva.gatosReservados}" class="col-6 mx-auto" >
                     <p th:text="${gato.nombre}" ></p>
                 </div>
