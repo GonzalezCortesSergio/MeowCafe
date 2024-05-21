@@ -44,7 +44,7 @@ public class ServicioReserva extends ServicioBaseImpl<Reserva, Long, Repositorio
                     .toList().size();
 
             if (largo > 0) {
-                precioHoras += (largo * porcentajeAdicional);
+                precioHoras *= (largo + porcentajeAdicional);
             }
         }
 
@@ -52,10 +52,10 @@ public class ServicioReserva extends ServicioBaseImpl<Reserva, Long, Repositorio
         if(reserva.getUsuarioReserva().getReservas().size() % numReservasDescuento == 0) {
 
             if(reserva.getUsuarioReserva().isEsPremium())
-                return (precioProductos + precioHoras) - (1 * descuentoPremium);
+                return (precioProductos + precioHoras) * (1 - descuentoPremium);
 
 
-            return (precioProductos + precioHoras) - (1 * descuentoNormal);
+            return (precioProductos + precioHoras) * (1 - descuentoNormal);
         }
 
         return precioProductos + precioHoras;
