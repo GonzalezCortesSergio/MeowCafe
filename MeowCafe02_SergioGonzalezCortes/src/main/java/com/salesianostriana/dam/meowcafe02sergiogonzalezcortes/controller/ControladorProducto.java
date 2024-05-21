@@ -22,8 +22,8 @@ public class ControladorProducto {
     @GetMapping("/cliente/productos")
     public String mostrarProductos(Model model) {
 
-        model.addAttribute("bebidas", servicioProducto.productosTipo(TipoProducto.COMIDA));
-        model.addAttribute("comidas", servicioProducto.productosTipo(TipoProducto.BEBIDA));
+        model.addAttribute("bebidas", servicioProducto.productosTipo(TipoProducto.BEBIDA));
+        model.addAttribute("comidas", servicioProducto.productosTipo(TipoProducto.COMIDA));
 
         return "cliente/productos";
     }
