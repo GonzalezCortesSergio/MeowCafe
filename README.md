@@ -91,8 +91,8 @@ Los combos estarán compuestos por productos, tienen como mínimo 1 bebida y 1 p
 
 ### Administrador
 
-username: admin
-password: admin
+<b>username</b>: admin
+<b>password</b>: admin
 
 ### Usuario
 
